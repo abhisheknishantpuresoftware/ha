@@ -1,0 +1,32 @@
+{
+  "name": "Backup Hassio to Google Drive",
+  "version": "1.7.1",
+  "slug": "googlebackup",
+  "description": "Backup hass.io snapshots to Google Drive.",
+  "arch": ["aarch64", "amd64", "armhf","i386"],
+  "url": "https://github.com/ttvt/hassio/tree/master/googlebackup",
+  "startup": "services",
+  "webui": "http://[HOST]:[PORT:8000]/gb",
+  "boot": "auto",
+  "homeassistant_api": true,
+  "map": ["config", "ssl", "addons", "backup:rw", "share"],
+  "options": {
+    "fromPattern" : "/backup/*.tar",
+    "backupDirID" : "Some_Google_Drive_Unique_Ogbpaque_Folder_ID",
+    "purge" : {"enabled" : false, "preserve" : 3},
+    "purge_google" : {"enabled" : false, "preserve" : 12},
+    "debug" : false},
+  "schema": {
+    "fromPattern" : "str",
+    "backupDirID" : "str",
+    "purge" : {"enabled" : "bool", "preserve" : "int(0,)"},
+    "purge_google" : {"enabled" : "bool", "preserve" : "int(0,)"},
+    "debug" : "bool"},
+  "ports": {
+    "8000/tcp": 8055
+  },
+  "ports_description": {
+    "8000/tcp": "Web UI and REST Services"
+  },
+  "image": "samccauley/{arch}-googlebackup"
+}

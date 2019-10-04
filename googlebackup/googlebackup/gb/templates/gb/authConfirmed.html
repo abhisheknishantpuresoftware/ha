@@ -1,0 +1,18 @@
+<html><head><title>Authorization Received</title></head>
+<body>
+    <h1>Authorization Received</h1>
+    <p>Thank you!</p><p>This add-on has received your authorization to write files to your Google Drive.</p>
+    <p></p>
+    <h1>Backup Instructions</h1>
+    <p>The backup of your hass.io snapshots is performed by executing a REST service hosted by
+        this add-on at the host port configured in the details for this add-on. There are no 
+        arguments needed to be passed to the service request. Everything needed is configured in 
+        the add-on configs. You simply need to send a GET operation to this address:</p>
+    <p><a href="{{ request.scheme }}://{{ request.get_host }}{% url 'gb:doBackup' %}">{{ request.scheme }}://{{ request.get_host }}{% url 'gb:doBackup' %}</a></p>
+    <p>You can use <a href="https://www.home-assistant.io/components/rest_command/">Home Assistant's RESTful Command</a>
+        to integrate this add-on's REST service into your own scripts
+        and automations. You may want to use a REST testing tool
+        like <a href="https://www.getpostman.com/">Postman</a> to perform
+        initial testing.</p>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "Hass.io Component Store",
+  "version": "0.13.3",
+  "slug": "hacs",
+  "homeassistant": "0.98.0",
+  "description": "Manage all your custom integration (components) and plugin (lovelace elements) with ease.",
+  "arch": ["aarch64", "amd64", "armhf", "armv7", "i386"],
+  "url": "https://github.com/ttvt/hassio/tree/master/componentstore",
+  "startup": "once",
+  "boot": "auto",
+  "auth_api": true,
+  "hassio_role": "default",
+  "map": ["config:rw", "ssl"],
+  "options": {},
+  "schema": false
+}
