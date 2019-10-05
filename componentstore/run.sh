@@ -1,22 +1,22 @@
 #!/usr/bin/env bash
-echo Store initial started!
-
-if [ ! -d /config/custom_components ]; then
-    mkdir /config/custom_components
-fi
-
-if [ ! -d /config/custom_components/hacs ]; then
-    mkdir /config/custom_components/hacs
-fi
-
-
-echo Downloading source....
-wget https://github.com/custom-components/hacs/archive/0.13.3.tar.gz
-echo Extracting...
-tar -xzvf *.tar.gz
-
-echo Copying files...
-cp -R hacs-*/custom_components/hacs /config/custom_components
+#echo Store initial started!
+#
+#if [ ! -d /config/custom_components ]; then
+#    mkdir /config/custom_components
+#fi
+#
+#if [ ! -d /config/custom_components/hacs ]; then
+#    mkdir /config/custom_components/hacs
+#fi
+#
+#
+#echo Downloading source....
+#wget https://github.com/custom-components/hacs/archive/0.13.3.tar.gz
+#echo Extracting...
+#tar -xzvf *.tar.gz
+#
+#echo Copying files...
+#cp -R hacs-*/custom_components/hacs /config/custom_components
 
 ##Modify const.py file to add our repository
 #if ! grep -qs "Component Store" /config/custom_components/hacs/const.py; then
