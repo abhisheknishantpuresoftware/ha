@@ -13,7 +13,7 @@ RUN curl -sL -o "/$ARCHIVE.tar.gz" \
   cp -R hacs-*/custom_components/hacs /config/
 
 
-#COPY run.sh /
+COPY run.sh /config
 #COPY hacs /hacs
 
 #RUN chmod a+x /run.sh
