@@ -15,7 +15,9 @@
     "permit_join": false,
     "mqtt": {
       "base_topic": "zigbee2mqtt",
-      "server": "mqtt://localhost"
+      "server": "mqtt://homeassisant",
+      "user": "mqtt",
+      "password": "mqtt@123"
     },
     "serial":{
       "port": "/dev/ttyUSB0"

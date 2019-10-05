@@ -35,11 +35,11 @@ The following table describes all necessary options. To run this add-on, you mus
 |`groups`|string|groups.yaml|Group file. See information below.|
 |`homeassistant`|**bool**|true|Set `true` if you want MQTT auto discovery.|
 |`permit_join`|**bool**|false|Set `true` when you setup new devices - make sure you set it back to `false` when done. Or alternative [runtime pairing](https://github.com/homematevn/ha/blob/master/zigbee2mqtt/PAIRING.md)|
-|`mqtt/server`|**string**|mqtt://localhost|The MQTT server address. Make sure you include the protocol. Depending on your configuration, the MQTT server URL will need to include the port, typically `1883` or `8883` for SSL communications. For example, `mqtt://localhost:1883`.|
+|`mqtt/server`|**string**|mqtt://homeassisant|The MQTT server address. Make sure you include the protocol. Depending on your configuration, the MQTT server URL will need to include the port, typically `1883` or `8883` for SSL communications. For example, `mqtt://homeassistant:1883`.|
 |`mqtt/base_topic`|**string**|zigbee2mqtt|Prefix for your MQTT topic|
 |`mqtt/user`|string| |Your MQTT username, if set.|
-|`mqtt/password`|string| |Your MQTT Password, if set.|
-|`mqtt/client_id`|string| |MQTT ClientID|
+|`mqtt/password`|string|mqtt|Your MQTT Password, if set.|
+|`mqtt/client_id`|string|mqtt@123|MQTT ClientID|
 |`serial/port`|**string**|/dev/ttyUSB0|Port for your CC2531 stick. To find out the port, go to Hass.io > System > Host system > Show Hardware|
 |`channel`|int|11|Channel changing requires re-pairing of all devices. Should use only channels: 11, 15, 20, 25|
 |`rtscts`|bool|false|Must set to `false` if you are using CC2530|
