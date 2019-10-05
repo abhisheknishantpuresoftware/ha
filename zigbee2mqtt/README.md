@@ -43,7 +43,7 @@ The following table describes all necessary options. To run this add-on, you mus
 |`serial/port`|**string**|/dev/ttyUSB0|Port for your CC2531 stick. To find out the port, go to Hass.io > System > Host system > Show Hardware|
 |`channel`|int|11|Channel changing requires re-pairing of all devices. Should use only channels: 11, 15, 20, 25|
 |`rtscts`|bool|false|Must set to `false` if you are using CC2530|
-|`network_key`|**list(int)**|[1,3..15,0,2..14]|Encryption key will improve security. See [more detail](https://www.zigbee2mqtt.io/how_tos/how_to_secure_network.html) and example usage. Leave this option empty if you don't want to use a network key. Changing this requires repairing of all devices.|
+|`network_key`|**list(int)**|[1,2,..16]|8 Int number. Encryption key will improve security. See [more detail](https://www.zigbee2mqtt.io/how_tos/how_to_secure_network.html). Leave this option empty if you don't want to use a network key. Changing this requires repairing of all devices.|
 
 #### Modifying zigbee2mqtt's `configuration.yaml`
 In some cases, you may wish to modify zigbee2mqtt's `configuration.yaml` file directly. By default, the configuration file is saved to `/share/zigbee2mqtt/configuration.yaml` on Hass.io host (see data_path above).
