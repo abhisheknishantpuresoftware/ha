@@ -26,11 +26,12 @@
 
 ## Configuration
 
-The following table describes all necessary options. To run this add-on, you must set the **required (bold)** parameters via the Hass.io user interface. See the [zigbee2mqtt docs](https://www.zigbee2mqtt.io/configuration/configuration.html) and the [default configuration file](https://github.com/Koenkk/zigbee2mqtt/blob/master/data/configuration.yaml) for more information.
+The following table describes all necessary options. To run this add-on, you must set the **required (bold)** parameters via the Hass.io user interface. 
+See the [zigbee2mqtt docs](https://www.zigbee2mqtt.io/configuration/configuration.html) for other options.
 
 |Parameter|Type|Default|Description|
 |---------|----|--------|-----------|
-|`data_path`|**string**|/share/zigbee2mqtt|Set this to the path you'd like the add-on to persist data. Must be within the `/share` directory.|
+|`data_path`|**string**|/share/zigbee2mqtt|The path you'd like the add-on to persist data. Must be within the `/share` directory.|
 |`devices`|string|devices.yaml|Device-specific file. See information below.|
 |`groups`|string|groups.yaml|Group file. See information below.|
 |`homeassistant`|**bool**|true|Set `true` if you want MQTT autodiscovery. See [Integrating with Home Assistant](https://www.zigbee2mqtt.io/integration/home_assistant.html) for details.|
@@ -41,12 +42,9 @@ The following table describes all necessary options. To run this add-on, you mus
 |`mqtt/password`|string| |Your MQTT Password, if set.|
 |`mqtt/client_id`|string| |MQTT ClientID|
 |`serial/port`|**string**|/dev/ttyUSB0|Port for your CC2531 stick.|
-|`serial/disable_led`|bool|no|Disable the LED of your CC2531 stick.|
-|`advanced/pan_id`|string|no|Optional ZigBee pan ID|
-|`channel`|int|no|Optional Zigbee Channel|
-|`log_level`|enum|no|Set to `debug`, `info`, `warn`, or `error`. Defaults to `info`. The log level for zigbee-shepherd and zigbee2mqtt. See [the wiki](https://www.zigbee2mqtt.io/how_tos/how_to_debug.html) for more information.|
-|`rtscts`|bool|no|RTS / CTS Hardware Flow Control for serial port. Must set to `false` if you connect CC2530 direct to UART port|
-|`network_key`|**list(int)**|yes|Specify an encryption key for your zigbee network. See [this section of the Zigbee2mqtt docs](https://www.zigbee2mqtt.io/how_tos/how_to_secure_network.html) for more details and example usage. Leave this option empty (i.e. leave the default) if you don't want to use a network key. Note that changing this requires repairing of all device connections. Hex values are not supported, only integer values (although hex values can be used by manually editing your `configuration.yaml` file and disabling `overwrite`).|
+|`channel`|int|11|Channel changing requires re-pairing of all devices. Should use only channels: 11, 15, 20, 25|
+|`rtscts`|bool|false|Must set to `false` if you are using CC2530|
+|`network_key`|**list(int)**|[1,3..15,0,2..14]|Encryption key will improve security. See [more detail](https://www.zigbee2mqtt.io/how_tos/how_to_secure_network.html) and example usage. Leave this option empty(default) if you don't want to use a network key. Changing this requires repairing of all device connections.|
 
 - Depending on your configuration, the MQTT server URL will need to include the port, typically `1883` or `8883` for SSL communications. For example, `mqtt://homeassistant:1883`.
 - To find out which serial ports you have exposed go to **Hass.io > System > Host system > Show Hardware**
