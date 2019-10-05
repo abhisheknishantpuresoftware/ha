@@ -2,43 +2,51 @@
 <img src="https://github.com/HomeMateVN/ha/raw/master/images/zigbee2mqtt.png"/>
 <h1>Zigbee2mqtt Hass.io Add-on</h1>
 <div style="display: flex; justify-content: center;">
-  <a style="margin-right: 0.5rem;" href="https://travis-ci.org/danielwelch/hassio-zigbee2mqtt">
-    <img src="https://img.shields.io/travis/danielwelch/hassio-zigbee2mqtt.svg?style=flat-square&logo=travis">
+  <a style="margin-right: 0.5rem;" href="https://travis-ci.org/homematevn/zigbee2mqtt">
+    <img src="https://img.shields.io/travis/homematevn/zigbee2mqtt.svg?style=flat-square&logo=travis">
   </a>
-  <a style="margin-left: 0.5rem;" href="https://cloud.docker.com/u/dwelch2101/repository/docker/dwelch2101/zigbee2mqtt-armhf">
-    <img src="https://img.shields.io/docker/pulls/dwelch2101/zigbee2mqtt-armhf.svg?style=flat-square&logo=docker">
+  <a style="margin-left: 0.5rem;" href="">
+    <img src="https://img.shields.io/badge/armhf-yes-green.svg">
+  </a>
+  <a style="margin-left: 0.5rem;" href="">
+    <img src="https://img.shields.io/badge/armv7-yes-green.svg">
+  </a>
+  <a style="margin-left: 0.5rem;" href="">
+    <img src="https://img.shields.io/badge/aarch64-yes-green.svg">
+  </a>
+  <a style="margin-left: 0.5rem;" href="">
+    <img src="https://img.shields.io/badge/amd64-yes-green.svg">
+  </a>
+  <a style="margin-left: 0.5rem;" href="">
+    <img src="https://img.shields.io/badge/i386-yes-green.svg">
   </a>
 </div>
 <br>
 </div>
 
-This is a clone of this [Zigbee2MQTT Add-on](https://github.com/danielwelch/hassio-zigbee2mqtt) credit by danielwelch
-
-I will periodically check and update this add-on following the original release. There will be some delay since I need to review the compatibility with other add-on before publish. Please understand.
-
 ## Configuration
 
-The following table describes all necessary options. To run this add-on, you must set the **required** parameters via the Hass.io user interface. See the [zigbee2mqtt docs](https://www.zigbee2mqtt.io/configuration/configuration.html) and the [default configuration file](https://github.com/Koenkk/zigbee2mqtt/blob/master/data/configuration.yaml) for more information.
+The following table describes all necessary options. To run this add-on, you must set the **required (bold)** parameters via the Hass.io user interface. See the [zigbee2mqtt docs](https://www.zigbee2mqtt.io/configuration/configuration.html) and the [default configuration file](https://github.com/Koenkk/zigbee2mqtt/blob/master/data/configuration.yaml) for more information.
 
-|Parameter|Type|Required|Description|
+|Parameter|Type|Default|Description|
 |---------|----|--------|-----------|
-|`data_path`|string|yes|Set this to the path you'd like the add-on to persist data. Must be within the `/share` directory. Defaults to `/share/zigbee2mqtt`.|
-|`devices`|string|no|Device-specific file. See information below.|
-|`groups`|string|no|Group file. See information below.|
-|`homeassistant`|bool|yes|Set this to `true` if you want MQTT autodiscovery. See [Integrating with Home Assistant](https://www.zigbee2mqtt.io/integration/home_assistant.html) for details.|
-|`permit_join`|bool|yes|Set this to `true` when you setup new devices - make sure you set it back to `false` when done. Or alternative [runtime pairing](https://github.com/danielwelch/hassio-zigbee2mqtt#pairing)|
-|`mqtt/server`|string|yes|The MQTT server address. Make sure you include the protocol. Example: `mqtt://homeassistant`|
-|`mqtt/base_topic`|string|yes|Prefix for your MQTT topic|
-|`mqtt/user`|string|no|Your MQTT username, if set.|
-|`mqtt/password`|string|no|Your MQTT Password, if set.|
-|`mqtt/client_id`|string|no|MQTT ClientID|
-|`serial/port`|string|yes|Serial port for your CC2531 stick.|
+|`data_path`|**string**|/share/zigbee2mqtt|Set this to the path you'd like the add-on to persist data. Must be within the `/share` directory.|
+|`devices`|string|devices.yaml|Device-specific file. See information below.|
+|`groups`|string|groups.yaml|Group file. See information below.|
+|`homeassistant`|**bool**|true|Set `true` if you want MQTT autodiscovery. See [Integrating with Home Assistant](https://www.zigbee2mqtt.io/integration/home_assistant.html) for details.|
+|`permit_join`|**bool**|false|Set `true` when you setup new devices - make sure you set it back to `false` when done. Or alternative [runtime pairing](https://github.com/danielwelch/hassio-zigbee2mqtt#pairing)|
+|`mqtt/server`|**string**|mqtt://localhost|The MQTT server address. Make sure you include the protocol.|
+|`mqtt/base_topic`|**string**|zigbee2mqtt|Prefix for your MQTT topic|
+|`mqtt/user`|string| |Your MQTT username, if set.|
+|`mqtt/password`|string| |Your MQTT Password, if set.|
+|`mqtt/client_id`|string| |MQTT ClientID|
+|`serial/port`|**string**|/dev/ttyUSB0|Port for your CC2531 stick.|
 |`serial/disable_led`|bool|no|Disable the LED of your CC2531 stick.|
 |`advanced/pan_id`|string|no|Optional ZigBee pan ID|
 |`channel`|int|no|Optional Zigbee Channel|
 |`log_level`|enum|no|Set to `debug`, `info`, `warn`, or `error`. Defaults to `info`. The log level for zigbee-shepherd and zigbee2mqtt. See [the wiki](https://www.zigbee2mqtt.io/how_tos/how_to_debug.html) for more information.|
 |`rtscts`|bool|no|RTS / CTS Hardware Flow Control for serial port. Must set to `false` if you connect CC2530 direct to UART port|
-|`network_key`|list(int)|yes|Specify an encryption key for your zigbee network. See [this section of the Zigbee2mqtt docs](https://www.zigbee2mqtt.io/how_tos/how_to_secure_network.html) for more details and example usage. Leave this option empty (i.e. leave the default) if you don't want to use a network key. Note that changing this requires repairing of all device connections. Hex values are not supported, only integer values (although hex values can be used by manually editing your `configuration.yaml` file and disabling `overwrite`).|
+|`network_key`|**list(int)**|yes|Specify an encryption key for your zigbee network. See [this section of the Zigbee2mqtt docs](https://www.zigbee2mqtt.io/how_tos/how_to_secure_network.html) for more details and example usage. Leave this option empty (i.e. leave the default) if you don't want to use a network key. Note that changing this requires repairing of all device connections. Hex values are not supported, only integer values (although hex values can be used by manually editing your `configuration.yaml` file and disabling `overwrite`).|
 
 - Depending on your configuration, the MQTT server URL will need to include the port, typically `1883` or `8883` for SSL communications. For example, `mqtt://homeassistant:1883`.
 - To find out which serial ports you have exposed go to **Hass.io > System > Host system > Show Hardware**
