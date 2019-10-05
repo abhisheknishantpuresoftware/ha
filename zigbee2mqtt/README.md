@@ -1,5 +1,4 @@
 <div align="center">
-<img src="https://github.com/HomeMateVN/ha/raw/master/images/zigbee2mqtt.png"/>
 <h1>Zigbee2mqtt Hass.io Add-on</h1>
 <div style="display: flex; justify-content: center;">
   <a style="margin-right: 0.5rem;" href="https://travis-ci.org/homematevn/zigbee2mqtt">
