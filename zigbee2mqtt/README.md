@@ -26,55 +26,43 @@
 
 ## Configuration
 
-The following table describes all necessary options. To run this add-on, you must set the **required (bold)** parameters via the Hass.io user interface. 
-See the [zigbee2mqtt docs](https://www.zigbee2mqtt.io/configuration/configuration.html) for other options.
+The following table describes all necessary options. To run this add-on, you must set the **required (bold)** parameters via the Hass.io user interface. See the [zigbee2mqtt docs](https://www.zigbee2mqtt.io/configuration/configuration.html) for other options.
 
 |Parameter|Type|Default|Description|
 |---------|----|--------|-----------|
 |`data_path`|**string**|/share/zigbee2mqtt|The path you'd like the add-on to persist data. Must be within the `/share` directory.|
 |`devices`|string|devices.yaml|Device-specific file. See information below.|
 |`groups`|string|groups.yaml|Group file. See information below.|
-|`homeassistant`|**bool**|true|Set `true` if you want MQTT autodiscovery. See [Integrating with Home Assistant](https://www.zigbee2mqtt.io/integration/home_assistant.html) for details.|
+|`homeassistant`|**bool**|true|Set `true` if you want MQTT auto discovery.|
 |`permit_join`|**bool**|false|Set `true` when you setup new devices - make sure you set it back to `false` when done. Or alternative [runtime pairing](https://github.com/danielwelch/hassio-zigbee2mqtt#pairing)|
-|`mqtt/server`|**string**|mqtt://localhost|The MQTT server address. Make sure you include the protocol.|
+|`mqtt/server`|**string**|mqtt://localhost|The MQTT server address. Make sure you include the protocol. Depending on your configuration, the MQTT server URL will need to include the port, typically `1883` or `8883` for SSL communications. For example, `mqtt://localhost:1883`.|
 |`mqtt/base_topic`|**string**|zigbee2mqtt|Prefix for your MQTT topic|
 |`mqtt/user`|string| |Your MQTT username, if set.|
 |`mqtt/password`|string| |Your MQTT Password, if set.|
 |`mqtt/client_id`|string| |MQTT ClientID|
-|`serial/port`|**string**|/dev/ttyUSB0|Port for your CC2531 stick.|
+|`serial/port`|**string**|/dev/ttyUSB0|Port for your CC2531 stick. To find out the port, go to Hass.io > System > Host system > Show Hardware|
 |`channel`|int|11|Channel changing requires re-pairing of all devices. Should use only channels: 11, 15, 20, 25|
 |`rtscts`|bool|false|Must set to `false` if you are using CC2530|
-|`network_key`|**list(int)**|[1,3..15,0,2..14]|Encryption key will improve security. See [more detail](https://www.zigbee2mqtt.io/how_tos/how_to_secure_network.html) and example usage. Leave this option empty(default) if you don't want to use a network key. Changing this requires repairing of all device connections.|
-
-- Depending on your configuration, the MQTT server URL will need to include the port, typically `1883` or `8883` for SSL communications. For example, `mqtt://homeassistant:1883`.
-- To find out which serial ports you have exposed go to **Hass.io > System > Host system > Show Hardware**
+|`network_key`|**list(int)**|[1,3..15,0,2..14]|Encryption key will improve security. See [more detail](https://www.zigbee2mqtt.io/how_tos/how_to_secure_network.html) and example usage. Leave this option empty if you don't want to use a network key. Changing this requires repairing of all devices.|
 
 #### Modifying zigbee2mqtt's `configuration.yaml`
-In some cases, you may wish to modify zigbee2mqtt's `configuration.yaml` file directly. The `configuration.yaml` file used by this add-on can be modified within the data directory specified via the add-on configuration (see above). By default, the configuration file is saved to `/share/zigbee2mqtt/configuration.yaml` on your Hass.io host. 
+In some cases, you may wish to modify zigbee2mqtt's `configuration.yaml` file directly. By default, the configuration file is saved to `/share/zigbee2mqtt/configuration.yaml` on your Hass.io host (see data_path above).
 
 #### Device-specific Configuration
-If you are using groups or device-specific settings, you must use seperate files, and provide the paths to these files in their corresponding config options.
-Zigbee2mqtt allows certain [device-specific configuration options](https://www.zigbee2mqtt.io/configuration/device_specific_configuration.html). Filename can be configured in the add-on via `devices`& `groups`. Example device-specific configuration entry, adapted from the Zigbee2mqtt docs:
-
-```yaml
-'0x00158d0001d82999':
-  friendly_name: "my_occupancy_sensor"
-  retain: true
-```
+If you are using groups or device-specific settings, you must use separate files, and provide the paths to these files in `devices` & `groups` options.
+Zigbee2mqtt allows certain [device-specific configuration options](https://www.zigbee2mqtt.io/configuration/device_specific_configuration.html). 
 
 ---
+
 ### Pairing
 
-#### Easy way
+#### Enable Paring: 
+Set `permit_join` in configuration to **true**, then restart the add-on. Change back to **false** when you finish.
 
-Set `permit_join` in configuration to *true*, then restart the addon. Change back to *false* when you finish.
+#### Add button to frontend to control Enable Pairing (Advance):
+[Information here](https://github.com/homematevn/ha/blob/master/zigbee2mqtt/PAIRING.md)
 
-#### Recommended way 
-
-[Information here](https://github.com/ttvt/hassio/blob/master/zigbee2mqtt/PAIRING.md)
-
-### Device pairing Instruction
-
+### Support Devices and pairing Instruction
 [Information here](https://www.zigbee2mqtt.io/information/supported_devices.html)
 
 ---
