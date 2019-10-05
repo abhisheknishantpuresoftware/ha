@@ -34,7 +34,7 @@ The following table describes all necessary options. To run this add-on, you mus
 |`devices`|string|devices.yaml|Device-specific file. See information below.|
 |`groups`|string|groups.yaml|Group file. See information below.|
 |`homeassistant`|**bool**|true|Set `true` if you want MQTT auto discovery.|
-|`permit_join`|**bool**|false|Set `true` when you setup new devices - make sure you set it back to `false` when done. Or alternative [runtime pairing](https://github.com/danielwelch/hassio-zigbee2mqtt#pairing)|
+|`permit_join`|**bool**|false|Set `true` when you setup new devices - make sure you set it back to `false` when done. Or alternative [runtime pairing](https://github.com/homematevn/ha/blob/master/zigbee2mqtt/PAIRING.md)|
 |`mqtt/server`|**string**|mqtt://localhost|The MQTT server address. Make sure you include the protocol. Depending on your configuration, the MQTT server URL will need to include the port, typically `1883` or `8883` for SSL communications. For example, `mqtt://localhost:1883`.|
 |`mqtt/base_topic`|**string**|zigbee2mqtt|Prefix for your MQTT topic|
 |`mqtt/user`|string| |Your MQTT username, if set.|
@@ -46,17 +46,17 @@ The following table describes all necessary options. To run this add-on, you mus
 |`network_key`|**list(int)**|[1,3..15,0,2..14]|Encryption key will improve security. See [more detail](https://www.zigbee2mqtt.io/how_tos/how_to_secure_network.html) and example usage. Leave this option empty if you don't want to use a network key. Changing this requires repairing of all devices.|
 
 #### Modifying zigbee2mqtt's `configuration.yaml`
-In some cases, you may wish to modify zigbee2mqtt's `configuration.yaml` file directly. By default, the configuration file is saved to `/share/zigbee2mqtt/configuration.yaml` on your Hass.io host (see data_path above).
+In some cases, you may wish to modify zigbee2mqtt's `configuration.yaml` file directly. By default, the configuration file is saved to `/share/zigbee2mqtt/configuration.yaml` on Hass.io host (see data_path above).
 
 #### Device-specific Configuration
-If you are using groups or device-specific settings, you must use separate files, and provide the paths to these files in `devices` & `groups` options.
+If you are using groups or device-specific settings, you must provide the paths to these files in `devices` & `groups` options.
 Zigbee2mqtt allows certain [device-specific configuration options](https://www.zigbee2mqtt.io/configuration/device_specific_configuration.html). 
 
 ---
 
 ### Pairing
 
-#### Enable Paring: 
+#### Enable Paring (Simple way): 
 Set `permit_join` in configuration to **true**, then restart the add-on. Change back to **false** when you finish.
 
 #### Add button to frontend to control Enable Pairing (Advance):
