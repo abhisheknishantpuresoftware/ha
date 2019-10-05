@@ -10,12 +10,11 @@ ENV ARCHIVE=hacs-$HACS_VERSION
 RUN curl -sL -o "/$ARCHIVE.tar.gz" \
   "https://github.com/custom-components/hacs/archive/$HACS_VERSION.tar.gz" && \
   tar xzvf "/$ARCHIVE.tar.gz" && \
-  cp -R hacs-*/custom_components/hacs /config/
+  cp -R hacs-*/custom_components/hacs /$ARCHIVE
 
 
-COPY run.sh /config
-#COPY hacs /hacs
+COPY run.sh /
 
-#RUN chmod a+x /run.sh
+RUN chmod a+x /run.sh
 
-#CMD [ "/run.sh" ]
+CMD [ "/run.sh" ]
