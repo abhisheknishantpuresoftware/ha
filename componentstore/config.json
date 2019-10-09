@@ -1,6 +1,6 @@
 {
   "name": "Hass.io Component Store",
-  "version": "0.15.0",
+  "version": "0.15.2",
   "slug": "hacs",
   "homeassistant": "0.98.0",
   "description": "Manage all your custom integration (components) and plugin (lovelace elements) with ease.",
