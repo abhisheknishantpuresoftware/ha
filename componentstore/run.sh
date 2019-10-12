@@ -20,20 +20,17 @@ if [ ! -d $PATH/hacs ]; then
   cp -R hacs-*/custom_components/hacs $PATH
 fi
 
-#Modify const.py file to add our repository
-if ! grep -qs "Community Store" $PATH/hacs/const.py; then
-    echo "will mod const.py"
-    sed -i 's/\"Community\"/\"Community Store\"/g' $PATH/hacs/const.py
-    sed -i 's/alpha-c-box/store/g' /config/hacs/const.py
-fi
 
-#echo "Mod config"
-#if ! grep -qs "hacs:" /config/configuration.yaml; then
-#	echo "hacs:" >> /config/configuration.yaml
-#	echo "  token:" >> /config/configuration.yaml
-#	echo "You need to add github token in configuration.yaml"
-#else
-#    echo configuration.yaml is correctly configured!
-#fi
+if ! grep -qs "hacs:" /config/configuration.yaml; then
+  echo "Auto edit configuration.yaml"
+	# shellcheck disable=SC2129
+	echo "hacs:" >> /config/configuration.yaml
+	echo "  token:" >> /config/configuration.yaml
+  echo "  sidepanel_title: Community Store" >> /config/configuration.yaml
+  echo "  sidepanel_icon: mdi:store" >> /config/configuration.yaml
+	echo "You will need to add github token in configuration.yaml"
+else
+    echo configuration.yaml is correctly configured!
+fi
 
 echo Done!
