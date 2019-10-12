@@ -19,7 +19,7 @@ This add-on will upload files from your hass[]().io backup folder (typically .ta
 ## Configuration
 
 ### `fromPattern`
-This pattern is used to identify a list of files to backup. That list is then pared down by checking Google Drive to see if any files in the list have already been backed up by this add-on. This check is performed to avoid backing up the same file twice (Google Drive allows duplicate files with the same name).
+This pattern is used to identify a list of files to backup. That list is then pared down by checking Google Drive to see if any files in the list have already been backed up to avoid backing up the same file twice (Google Drive allows duplicate files with the same name).
 
 Note that this add-on can only see files on your Google Drive that it created itself. Therefore, if you have backed up some of your snapshots on your own to Google Drive, this add-on will not be aware of those and it will back them up anyway.
 
@@ -49,15 +49,14 @@ Defaults to `false` if not present. Set this to `true` to enable debug-level log
 
 
 ## Calling the `doBackup` Service
-Backups are performed by calling the `doBackup` service operation exposed by this add-on. When you start this add-on, the service becomes available on the Host Port that you've configured this add-on to use.
+Make sure you have completed the [config & authorize](#Installation) in installation before doBackup
 
-The `doBackup` service operation does not require any arguments. It gets the information it needs from the [Configuration Options](#Configuration-Options) and from your having completed the [authorization process described above](#Authorizing-this-Add-On-to-Upload-to-Google-Drive).
-
-You call the doBackup service operation by simply performing a GET against this URI (in fact, you can just click this link):
+Backups are performed by calling the `doBackup` service. The `doBackup` service operation does not require any arguments.
+Simply browse this URI:
 ```
     http://<YOUR_HASSIO_HOST>:<HOST_PORT>/gb/doBackup
 ```
-Substitute in your hass[]().io host name (usually `hassio.local`) and the Host Port number you've configured for this add-on.
+Substitute in your hass[]().io host name (usually `hassio.local`) and the Host Port number (default `8000`) you've configured for this add-on.
 
 The `doBackup` service operation will respond with JSON reminding you of the configuration settings that it used and indicating:
 - the time the backup operation began, in ISO 8601 format.

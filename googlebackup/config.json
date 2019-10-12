@@ -13,7 +13,7 @@
   "map": ["config", "ssl", "addons", "backup:rw", "share"],
   "options": {
     "fromPattern" : "/backup/*.tar",
-    "backupDirID" : "Some_Google_Drive_Unique_Ogbpaque_Folder_ID",
+    "backupDirID" : "Google_Drive_Folder_ID",
     "purge" : {"enabled" : false, "preserve" : 3},
     "purge_google" : {"enabled" : false, "preserve" : 12},
     "debug" : false},
