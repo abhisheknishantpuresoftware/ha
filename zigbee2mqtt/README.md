@@ -23,6 +23,8 @@
 <br>
 </div>
 
+
+
 ## Configuration
 
 The following table describes all necessary options. To run this add-on, you must set the **required (bold)** parameters via the Hass.io user interface. See the [zigbee2mqtt docs](https://www.zigbee2mqtt.io/configuration/configuration.html) for other options.
@@ -38,7 +40,7 @@ The following table describes all necessary options. To run this add-on, you mus
 |`mqtt/base_topic`|**string**|zigbee2mqtt|Prefix for your MQTT topic|
 |`mqtt/user`|string| |Your MQTT username, if set.|
 |`mqtt/password`|string|mqtt|Your MQTT Password, if set.|
-|`mqtt/client_id`|string|mqtt@123|MQTT ClientID|
+|`mqtt/client_id`|string|mqtt|MQTT ClientID|
 |`serial/port`|**string**|/dev/ttyUSB0|Port for your CC2531 stick. To find out the port, go to Hass.io > System > Host system > Show Hardware|
 |`channel`|int|11|Channel changing requires re-pairing of all devices. Should use only channels: 11, 15, 20, 25|
 |`rtscts`|bool|false|Must set to `false` if you are using CC2530|

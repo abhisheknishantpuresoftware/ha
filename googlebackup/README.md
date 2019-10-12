@@ -1,18 +1,12 @@
-This is a folk of [Backup to Google Drive Add-on](https://github.com/samccauley/addon-hassiogooglebackup#readme) credit by samccauley.
-
-I will periodically check and update this add-on following the original release. There will be some delay since I need to review the compatibility with other add-on before publish. Please understand.
-
 # Backup to Google Drive
 ![Logo][logo]
-## Overview
-This add-on will upload files from your hass[]().io backup folder (typically .tar files created by the hass[]().io SnapShot feature) to your Google Drive. A few key things to note:
-1. This add-on asks only for permission to add new files to your Google Drive, and to manage the files that it adds. It will not have permission to view any files on your Google Drive that it did not create itself. This is to protect the contents of your Google Drive.
-2. This add-on exposes a Web User Interface for obtaining your authorization to upload files to your Google Drive. Once that authorization is established, the Web User Interface is no longer needed - it exists only for this initial setup.
-3. Backups are performed by executing a REST service exposed on the same port as the Web User Interface. Find [more information on the doBackup service operation below](#Calling-the-`doBackup`-Operation). You can use [Home Assistant's RESTful Command](https://www.home-assistant.io/components/rest_command/) to integrate this add-on's REST service opertion into your own scripts and automations. You may want to use a REST testing tool like [Postman](https://www.getpostman.com/) to perform initial testing.
-4. Optionally, you may configure this add-on to purge older files from your hass[]().io backup folder.
-5. Optionally, you may also configure this add-on to purge older files from the Google Drive folder that your are archiving your snapshots to.
 
-## Configuration Options
+This add-on will upload files from your hass[]().io backup folder (typically .tar files created by the hass[]().io SnapShot feature) to your Google Drive. 
+
+## Installation
+1. Add the repository URL via the Hassio Add-on Store Tab: `https://github.com/homematevn/ha`
+
+## Configuration
 Example configuration:
 ```
 {"fromPattern" : "/backup/*.tar",
@@ -175,5 +169,16 @@ Here is an example Home Assistant Sensor configuration that monitors for these e
     state_topic: "googlebackup/adhocresult"
     json_attributes_topic: "googlebackup/adhocresult"
 ```
+
+### A few key things to note:
+1. This add-on asks only for permission to add new files to your Google Drive, and to manage the files that it adds. It will not have permission to view any files on your Google Drive that it did not create itself. This is to protect the contents of your Google Drive.
+2. This add-on exposes a Web User Interface for obtaining your authorization to upload files to your Google Drive. Once that authorization is established, the Web User Interface is no longer needed - it exists only for this initial setup.
+3. Backups are performed by executing a REST service exposed on the same port as the Web User Interface. Find [more information on the doBackup service operation below](#Calling-the-`doBackup`-Operation). You can use [Home Assistant's RESTful Command](https://www.home-assistant.io/components/rest_command/) to integrate this add-on's REST service opertion into your own scripts and automations. You may want to use a REST testing tool like [Postman](https://www.getpostman.com/) to perform initial testing.
+4. Optionally, you may configure this add-on to purge older files from your hass[]().io backup folder.
+5. Optionally, you may also configure this add-on to purge older files from the Google Drive folder that your are archiving your snapshots to.
+
+
+## Credits
+ [samccauley](https://github.com/samccauley/addon-hassiogooglebackup#readme).
 
 [logo]: https://github.com/ttvt/hassio/raw/master/googlebackup/logo.png
