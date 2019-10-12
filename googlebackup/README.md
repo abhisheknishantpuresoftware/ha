@@ -4,38 +4,39 @@
 This add-on will upload files from your hass[]().io backup folder (typically .tar files created by the hass[]().io SnapShot feature) to your Google Drive. 
 
 ## Installation
-1. Add the repository URL via the Hassio Add-on Store Tab: `https://github.com/homematevn/ha`
+1. Add the repository URL via the Hassio Add-on Store Tab: `https://github.com/homematevn/ha` and install
+2. Configure add-on options. See [below](#Configuration)
+3. Start this add-on and make sure that it is set to `Start on boot`.
+4. Open the Web User Interface for this add-on using the `Open Web UI` link on the add-on details page. Following the instructions in the Web User Interface, do the following:
+    1. Click on the `AUTHORIZE` button to launch a separate browser tab to the Google Authorization Server.
+    2. If required, login to Google and confirm your Google user ID.
+    3. Google will then tell you what application (this add-on) is requesting authority and what scope of authority is being requested. Click Google's `Allow` button.
+    4. Google will then show you an authorization code. Copy this code so that you can paste into this add-on's Web User Interface (next step).
+    5. Return to the browser tab containing this add-on's Web User Interface and paste the copied value (from the previous step) into the provided `Authorization Code' field.
+    6. Click the `INGEST CODE` button.
+    7. You should be presented with a message indicating **authorization received**.
 
 ## Configuration
-Example configuration:
-```
-{"fromPattern" : "/backup/*.tar",
- "backupDirID" : "1CvPDzNz1v-OuOUqKq3jjoKQt020hKK7R",
- "purge" : {"enabled" : true, "preserve" : 3},
- "purge_google" : {"enabled" : true, "preserve" : 12},
- "debug" : false}
-```
-### `fromPattern`
-Use this to identify the files on your hass[]().io host that you wish to backup.
 
+### `fromPattern`
 This pattern is used to identify a list of files to backup. That list is then pared down by checking Google Drive to see if any files in the list have already been backed up by this add-on. This check is performed to avoid backing up the same file twice (Google Drive allows duplicate files with the same name).
 
 Note that this add-on can only see files on your Google Drive that it created itself. Therefore, if you have backed up some of your snapshots on your own to Google Drive, this add-on will not be aware of those and it will back them up anyway.
 
 ### `backupDirID`
-This identifies the Google Drive folder in which you want to place your backed up files. Because this add-on does not have permission to browse any files or directories on your Google Drive that it does not itself create, you cannot simply provide the folder name. You must instead provide Google Drive's unique opaque ID of the folder. Google Drive doesn't make it easy to get this value. But, here's how you can get it:
-1. In your favorite web browser, navigate to the Google Drive folder to which you plan to upload your files (create a new folder in Google Drive if you wish). Be sure that you have the perferred folder open so that its contents (even if it's empty) are displayed.
+This identifies the Google Drive folder in which you want to place your backed up files. Because this add-on does not have permission to browse any files or directories on your Google Drive that it does not itself create, you must instead provide Google Drive's unique opaque ID of the folder. How you can get it:
+1. In your web browser, navigate to the Google Drive folder to which you plan to upload your files (create a new folder in Google Drive if you wish). Be sure that you have the perferred folder open so that its contents (even if it's empty) are displayed.
 2. From the address bar of your browser, copy the last portion of the URL. That value is Google Drive's unique opaque ID for the folder. Paste that value in for the `backupDirID` value in the configuration.
 
 ### `purge`
 This configures the option to purge (delete) older files from your source location (e.g. your /backup folder on hass[]().io). There two sub-elements:
-- `enabled` Set this boolean to true if you wish to take advantage of this purge feature.
-- `preserve` Set this integer value to the number of files that you wish to preserve (to keep) in your source location. If enabled, this purge feature will delete the oldest files (by date modified) in your source location, preserving the number of more recent files that you specify with this value.
+- `enabled` Set this to true if you wish to take advantage of this purge feature.
+- `preserve` Set this integer value to the number of files that you wish to keep in your source location. If enabled, this purge feature will delete the oldest files in your source location, preserving the number of more recent files that you specify with this value.
 
 ### `purge_google`
-Contrary to its ominous sounding name, this does not purge every file from your Google Drive ;-). This add-on can see **only files that it creates** on your Google Drive. It can also see the folder that you identify for it to place backup files into, but it cannot see files inside that folder unless this add-on created them itself. This option configures the feature to purge (delete) older files from your Google Drive folder (the one you identify in the `backupDirID` option). There two sub-elements:
-- `enabled` Set this boolean to true if you wish to take advantage of this feature.
-- `preserve` Set this integer value to the number of files that you wish to preserve (to keep) in your Google Drive folder. If enabled, this feature will delete the oldest files (by date modified) in your Google Drive folder, preserving the number of more recent files that you specify with this value.
+This option configures the feature to purge (delete) older files from your Google Drive folder (the one you identify in the `backupDirID` option). There two sub-elements:
+- `enabled` Set this to true if you wish to take advantage of this feature.
+- `preserve` Set this integer value to the number of files that you wish to keep in your Google Drive folder. If enabled, this feature will delete the oldest files (by date modified) in your Google Drive folder, preserving the number of more recent files that you specify with this value.
 
 **Important notes about this option:**
 1. This **permanently deletes** the selected files from your Google Drive, bypassing your Google Drive Trash. The idea is to free up available storage on your Google Drive.
@@ -46,23 +47,8 @@ Contrary to its ominous sounding name, this does not purge every file from your 
 ### `debug`
 Defaults to `false` if not present. Set this to `true` to enable debug-level logging.
 
-## Authorizing this Add-On to Upload to Google Drive
-This add-on requires you to authorize it to a limited scope of access to your Google Drive. This specific scope it requires is `https://www.googleapis.com/auth/drive.file`. You can read information about what that scope entails in [Google's Guide to OAuth 2.0 Scopes](https://developers.google.com/identity/protocols/googlescopes). Essentially, it allows this add-on to view and manage Google Drive files and folders that you have opened or created with this add-on.
 
-Before using the [`doBackup` service operation](Calling-the-`doBackup`-Operation), you need to follow these steps to grant this add-on the required authorization:
-1. Start this add-on and make sure that it is set to `Start on boot`.
-2. Open the Web User Interface for this add-on using the `Open Web UI` link on the add-on details page. Alternatively, you can open your own browser window and navigate to: `http://<Your_Hassio_Host>:<Host_Port>/gb`, substituting your hass[]().io host name and the Host Port number you've configured for this add-on.
-3. Following the instructions in the Web User Interface, do the following:
-    1. Click on the `AUTHORIZE` button to launch a separate browser tab to the Google Authorization Server.
-    2. If required, login to Google and confirm your Google user ID.
-    3. Google will then tell you what application (this add-on) is requesting authority and what scope of authority is being requested. Click Google's `Allow` button.
-    4. Google will then show you an authorization code. Copy this code so that you can paste into this add-on's Web User Interface (next step).
-    5. Return to the browser tab containing this add-on's Web User Interface and paste the copied value (from the previous step) into the provided `Authorization Code' field.
-    6. Click the `INGEST CODE` button.
-    7. You should be presented with a message indicating **authorization received**.
-4. This completes the authorization step! You're now ready to begin using the `doBackup` Service as described below.
-
-## Calling the `doBackup` Operation
+## Calling the `doBackup` Service
 Backups are performed by calling the `doBackup` service operation exposed by this add-on. When you start this add-on, the service becomes available on the Host Port that you've configured this add-on to use.
 
 The `doBackup` service operation does not require any arguments. It gets the information it needs from the [Configuration Options](#Configuration-Options) and from your having completed the [authorization process described above](#Authorizing-this-Add-On-to-Upload-to-Google-Drive).
