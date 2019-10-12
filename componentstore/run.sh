@@ -13,6 +13,7 @@ fi
 
 if [ ! -d $CONFIG_PATH/custom_components/hacs ]; then
   echo Copying files...
+  ls /
   tar xzvf /hacs.tar.gz
   cp -R hacs*/custom_components $CONFIG_PATH
 fi
