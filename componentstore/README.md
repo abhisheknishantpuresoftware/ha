@@ -6,18 +6,13 @@ An easy-to-use Add-on for install and manage `custom components` and `custom car
 
 ***
 ## Installation
-**You need to use Hass.io version 0.98.0 or newer for this to work.**
 1. Add the repository URL via the Hassio Add-on Store Tab: `https://github.com/homematevn/ha`
 2. Install and start the **Component Store** add-on from HomeMateVN Repository. You only need to start one time 
-3. Get a GitHub Personal Access Token [have a look here](https://github.com/ttvt/hassio/blob/master/componentstore/docs/token.md). Add my_github_access_token to secret.yaml file
-```yaml
-github_access_token: "GitHub Personal Access Token"
-```
+3. Get a GitHub Personal Access Token [have a look here](https://github.com/ttvt/hassio/blob/master/componentstore/docs/token.md). Add `github_access_token` to `secret.yaml` file
 4. Restart Home Assistant
 
 **Note**: The installation process will modify `configuration.yaml` file automatically, do not delete it.
-
-
+**You need to use Hass.io version 0.98.0 or newer for this to work.**
 
 ## Update
 **NOTICE**: Components installed manual or outside this store will not be mananged in component store.
