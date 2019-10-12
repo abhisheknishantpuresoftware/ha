@@ -1,25 +1,34 @@
 #!/usr/bin/env bash
 echo Store initial started!
 
-PATH=/config/custom_components
+HACS_PATH=/config/custom_components
 
 if [ -d /home/homeassistant/.homeassistant ]; then
   echo Running on Home Assistant
-  PATH=/home/homeassistant/.homeassistant/custom_components
+  HACS_PATH=/home/homeassistant/.homeassistant/custom_components
 else
   echo Running on Hass.io
-  PATH=/config/custom_components
+  HACS_PATH=/config/custom_components
 fi
 
-if [ ! -d $PATH ]; then
-    mkdir $PATH
+if [ ! -d $HACS_PATH ]; then
+    mkdir $HACS_PATH
 fi
 
-if [ ! -d $PATH/hacs ]; then
+if [ ! -d $HACS_PATH/hacs ]; then
   echo Copying files...
-  cp -R hacs-*/custom_components/hacs $PATH
+  cp -R hacs-*/custom_components/hacs $HACS_PATH
 fi
 
+<<<<<<< HEAD
+=======
+#Modify const.py file to add our repository
+#if ! grep -qs "Community Store" $HACS_PATH/hacs/const.py; then
+#    echo "will mod const.py"
+#    sed -i 's/\"Community\"/\"Community Store\"/g' $HACS_PATH/hacs/const.py
+#    sed -i 's/alpha-c-box/store/g' HACS_PATH/hacs/const.py
+#fi
+>>>>>>> 4f0919d58fcd8ac1af0e0a5679b0c971531cc894
 
 if ! grep -qs "hacs:" /config/configuration.yaml; then
   echo "Auto edit configuration.yaml"
