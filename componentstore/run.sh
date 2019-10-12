@@ -1,42 +1,29 @@
 #!/usr/bin/env bash
 echo Store initial started!
 
-HACS_PATH=/config/custom_components
+CONFIG_PATH=/home/homeassistant/.homeassistant
 
-if [ -d /home/homeassistant/.homeassistant ]; then
+if [ -d $CONFIG_PATH ]; then
   echo Running on Home Assistant
-  HACS_PATH=/home/homeassistant/.homeassistant/custom_components
 else
   echo Running on Hass.io
-  HACS_PATH=/config/custom_components
+  CONFIG_PATH=/config
 fi
 
-if [ ! -d $HACS_PATH ]; then
-    mkdir $HACS_PATH
-fi
 
-if [ ! -d $HACS_PATH/hacs ]; then
+if [ ! -d $CONFIG_PATH/custom_components/hacs ]; then
   echo Copying files...
-  cp -R hacs-*/custom_components/hacs $HACS_PATH
+  tar xzvf "/hacs.tar.gz"
+  mv -R hacs*/custom_components $CONFIG_PATH
 fi
 
-<<<<<<< HEAD
-=======
-#Modify const.py file to add our repository
-#if ! grep -qs "Community Store" $HACS_PATH/hacs/const.py; then
-#    echo "will mod const.py"
-#    sed -i 's/\"Community\"/\"Community Store\"/g' $HACS_PATH/hacs/const.py
-#    sed -i 's/alpha-c-box/store/g' HACS_PATH/hacs/const.py
-#fi
->>>>>>> 4f0919d58fcd8ac1af0e0a5679b0c971531cc894
-
-if ! grep -qs "hacs:" /config/configuration.yaml; then
+if ! grep -qs "hacs:" $CONFIG_PATH/configuration.yaml; then
   echo "Auto edit configuration.yaml"
 	# shellcheck disable=SC2129
-	echo "hacs:" >> /config/configuration.yaml
-	echo "  token:" >> /config/configuration.yaml
-  echo "  sidepanel_title: Community Store" >> /config/configuration.yaml
-  echo "  sidepanel_icon: mdi:store" >> /config/configuration.yaml
+	echo "hacs:" >> $CONFIG_PATH/configuration.yaml
+	echo "  token:" >> $CONFIG_PATH/configuration.yaml
+  echo "  sidepanel_title: Community Store" >> $CONFIG_PATH/configuration.yaml
+  echo "  sidepanel_icon: mdi:store" >> $CONFIG_PATHg/configuration.yaml
 	echo "You will need to add github token in configuration.yaml"
 else
     echo configuration.yaml is correctly configured!
