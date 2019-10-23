@@ -22,7 +22,7 @@ if ! grep -qs "hacs:" $CONFIG_PATH/configuration.yaml; then
   echo "Auto edit configuration.yaml"
 	# shellcheck disable=SC2129
 	echo "hacs:" >> $CONFIG_PATH/configuration.yaml
-	echo "  token:" >> $CONFIG_PATH/configuration.yaml
+	echo "  token: !secret github_access_token" >> $CONFIG_PATH/configuration.yaml
   echo "  sidepanel_title: Community Store" >> $CONFIG_PATH/configuration.yaml
   echo "  sidepanel_icon: mdi:store" >> $CONFIG_PATH/configuration.yaml
 	echo "You will need to add github token in configuration.yaml"
