@@ -4,17 +4,15 @@
 This add-on will upload files from your hass[]().io backup folder (typically .tar files created by the hass[]().io SnapShot feature) to your Google Drive. 
 
 ## Installation
-1. Add the repository URL via the Hassio Add-on Store Tab: `https://github.com/homematevn/ha` and install
+1. Add the repository and install via the Hassio Add-on Store Tab: *https://github.com/homematevn/ha*
 2. Configure add-on options. See [below](#Configuration)
 3. Start this add-on and make sure that it is set to `Start on boot`.
-4. Open the Web User Interface for this add-on using the `Open Web UI` link on the add-on details page. Following the instructions in the Web User Interface, do the following:
-    1. Click on the `AUTHORIZE` button to launch a separate browser tab to the Google Authorization Server.
-    2. If required, login to Google and confirm your Google user ID.
-    3. Google will then tell you what application (this add-on) is requesting authority and what scope of authority is being requested. Click Google's `Allow` button.
-    4. Google will then show you an authorization code. Copy this code so that you can paste into this add-on's Web User Interface (next step).
-    5. Return to the browser tab containing this add-on's Web User Interface and paste the copied value (from the previous step) into the provided `Authorization Code' field.
-    6. Click the `INGEST CODE` button.
-    7. You should be presented with a message indicating **authorization received**.
+4. `Open Web UI` link on the add-on details page. Following the instructions in the Web User Interface, do the following:
+    1. Click on the `AUTHORIZE` button to launch a separate browser tab to the Google Authorization Server. If required, login to Google and confirm your Google user ID.
+    2. Google will then tell you what application (this add-on) is requesting authority and what scope of authority is being requested. Click `Allow` button.
+    3. Google will then show you an authorization code. Copy this code.
+    4. Return to the browser tab containing this add-on's Web User Interface and paste the copied value (from the previous step) into the *Authorization Code* field. Click the `INGEST CODE` button.
+    5. You should be presented with a message indicating **authorization received**.
 
 ## Configuration
 
@@ -58,7 +56,7 @@ Simply browse this URI:
 ```
 Substitute in your hass[]().io host name (usually `hassio.local`) and the Host Port number (default `8000`) you've configured for this add-on.
 
-The `doBackup` service operation will respond with JSON reminding you of the configuration settings that it used and indicating:
+The `doBackup` service operation will respond with JSON indicating:
 - the time the backup operation began, in ISO 8601 format.
 - how many files were found using the `fromPattern`
 - how many of those files had alredy been backed up to your Google Drive and were therfore skipped this time
@@ -82,11 +80,13 @@ The `doBackup` service operation will respond with JSON reminding you of the con
 Unexpected errors will return an HTTP Status Code of some value other than the normal 200 Success Code.
 
 ## Calling the `adhocBackup` Operation
-As a completely separate feature, adhoc backups may be performed. These backups do not use the configured options `fromPattern`, `backupDirID`, `purge` and `purge_google`. Instead, an adhoc backup request identifies which files are to be backed up and which Google Drive folder is to be targeted each time it is placed (hence the name, "adhoc"). The concept of "purging" of older files while preserving more recent files does not apply at all to adhoc backups. Adhoc backups simply copy each identified file from your hass[]().io host to your Google Drive, **replacing the target file on Google Drive if it already exists**. Adhoc backups are performed by calling the `adhocBackup` service operation exposed by this add-on. When you start this add-on, the service becomes available on the Host Port that you've configured this add-on to use.
+An adhoc backup request identifies which files are to be backed up and which Google Drive folder is to be targeted each time it is placed. The concept of "purging" of older files while preserving more recent files does not apply at all to adhoc backups. Adhoc backups simply copy each identified file from your hass[]().io host to your Google Drive, **replacing the target file on Google Drive if it already exists**. Adhoc backups are performed by calling the `adhocBackup` service operation exposed by this add-on. When you start this add-on, the service becomes available on the Host Port that you've configured this add-on to use.
 
 The `adhocBackup` service operation has two required arguments that must be provided in the form of a JSON body on the HTTP POST.
-- `fromPatterns` This is an array of file name patterns to be used to identify which files to copy from your hass[]().io host (only the following folders are accessible for this add-on to copy from: `config`, `ssl`, `addons`, `backup`, and `share`).
-- `backupDirID` This is identifies the particular folder on your Google Drive where you want the files to be copied to. See the description of the [backupDirID configuration operation](#`backupDirID`), above, for details on how to obtain the identifier of a Google Drive folder. Keep in mind that you must have completed the one-time [authorization process described above](#Authorizing-this-Add-On-to-Upload-to-Google-Drive) in order for either of these service operations to work.
+### `fromPatterns` 
+This is an array of file name patterns to be used to identify which files to copy from your hass[]().io host (only the following folders are accessible for this add-on to copy from: `config`, `ssl`, `addons`, `backup`, and `share`).
+### `backupDirID` 
+This is identifies the particular folder on your Google Drive where you want the files to be copied to. See the description of the [backupDirID configuration operation](#`backupDirID`), above, for details on how to obtain the identifier of a Google Drive folder. Keep in mind that you must have completed the one-time [authorization process described above](#Authorizing-this-Add-On-to-Upload-to-Google-Drive) in order for either of these service operations to work.
 
 **WARNING:** It is recommended that you do NOT specify the same target Google Drive folder for adhoc backups that you have specified in the add-on options configuration for the normal backup operation, especially if you are using the `purge_google` feature.
 
@@ -98,7 +98,8 @@ Substitute in your hass[]().io host name (usually `hassio.local`) and the Host P
 
 ### Sample JSON Request
 ```
-{"fromPatterns" : ["/config/configuration.yaml", "/config/automations.yaml"],
+{"fromPatterns" : ["/config/configuration.yaml",
+                   "/config/automations.yaml"],
  "backupDirID" : "4FtLMzNz1v-OuOUqKq3jjoKQt020hLL9P"}
 ```
 
@@ -129,7 +130,7 @@ Unexpected errors will return an HTTP Status Code of some value other than the n
 ## Integrating into Home Assistant
 
 ### Automating Backups with Home Assistant
-You can easily integrate this add-on's `doBackup` REST service operation into Home Assistant using [Home Assistant's RESTful Command](https://www.home-assistant.io/components/rest_command/). You'll probably need to use `localhost` instead of `hassio.local` in this configuration. You'll also want to specify an adequate timeout value. Here's how I setup mine:
+You can easily integrate this add-on's `doBackup` REST service operation into Home Assistant using [Home Assistant's RESTful Command](https://www.home-assistant.io/components/rest_command/):
 ```
 rest_command:
   google_backup:
@@ -137,8 +138,6 @@ rest_command:
     timeout: '300'
 ```
 With this REST Command created, you'll see your Google Backup Service available as `rest_command.google_backup` in [Home Assistant's Services Development Tool](https://www.home-assistant.io/docs/tools/dev-tools/), and you'll also be able to call it as part of [Home Assistant Automations](https://www.home-assistant.io/components/automation/).
-
-Because the `adhocBackup` operation requires a JSON array, I've not been able to figure out how to configure a REST Command for it in Home Assistant. If you figure it out, let me know. For now, you can call the `adhocBackup` operation from tools like [Postman](https://www.getpostman.com/). You'll want to setup your tool do a POST method, passing in JSON (Content-Type of appliction/json). Here's an example JSON request: `{"fromPatterns" : ["/config/configuration.yaml", "/config/automations.yaml"], "backupDirID" : "4FtLMzNz1v-OuOUqKq3jjoKQt020hLL9P"}`.
 
 ### MQTT Event
 Everytime the doBackup operation, or the adhocBackup operation, is executed, an event is published to the [MQTT broker](https://www.home-assistant.io/components/mqtt/) that you have configured in Home Assistant. The payload of the event is a copy of the JSON response described above. The event is published to either the `googlebackup/result` or the `googlebackup/adhocresult` topic, depending on which operation was called.
@@ -154,14 +153,6 @@ Here is an example Home Assistant Sensor configuration that monitors for these e
     state_topic: "googlebackup/adhocresult"
     json_attributes_topic: "googlebackup/adhocresult"
 ```
-
-### A few key things to note:
-1. This add-on asks only for permission to add new files to your Google Drive, and to manage the files that it adds. It will not have permission to view any files on your Google Drive that it did not create itself. This is to protect the contents of your Google Drive.
-2. This add-on exposes a Web User Interface for obtaining your authorization to upload files to your Google Drive. Once that authorization is established, the Web User Interface is no longer needed - it exists only for this initial setup.
-3. Backups are performed by executing a REST service exposed on the same port as the Web User Interface. Find [more information on the doBackup service operation below](#Calling-the-`doBackup`-Operation). You can use [Home Assistant's RESTful Command](https://www.home-assistant.io/components/rest_command/) to integrate this add-on's REST service opertion into your own scripts and automations. You may want to use a REST testing tool like [Postman](https://www.getpostman.com/) to perform initial testing.
-4. Optionally, you may configure this add-on to purge older files from your hass[]().io backup folder.
-5. Optionally, you may also configure this add-on to purge older files from the Google Drive folder that your are archiving your snapshots to.
-
 
 ## Credits
  [samccauley](https://github.com/samccauley/addon-hassiogooglebackup#readme).
