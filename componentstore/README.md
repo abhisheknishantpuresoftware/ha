@@ -35,4 +35,4 @@ Additional licenses for third-party components of this addon are available as pa
 ### Credits
 - [custom-components](https://github.com/custom-components/hacs)
 
-[logo]: https://github.com/homematevn/ha/raw/master/componentstore/logo.png
+[logo]: https://github.com/HomemateVN/ha/blob/master/componentstore/icon.png
