@@ -15,7 +15,7 @@
     "permit_join": false,
     "mqtt": {
       "base_topic": "zigbee2mqtt",
-      "server": "mqtt://homeassisant",
+      "server": "mqtt://core-mosquitto",
       "user": "mqtt",
       "password": "mqtt"
     },

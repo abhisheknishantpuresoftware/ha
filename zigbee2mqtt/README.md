@@ -36,7 +36,7 @@ The following table describes all necessary options. To run this add-on, you mus
 |`groups`|string|groups.yaml|Group file. See information below.|
 |`homeassistant`|**bool**|true|Set `true` if you want MQTT auto discovery.|
 |`permit_join`|**bool**|false|Set `true` when you setup new devices - make sure you set it back to `false` when done. Or alternative [runtime pairing](https://github.com/homematevn/ha/blob/master/zigbee2mqtt/PAIRING.md)|
-|`mqtt/server`|**string**|mqtt://homeassisant|The MQTT server address. Make sure you include the protocol. Depending on your configuration, the MQTT server URL will need to include the port, typically `1883` or `8883` for SSL communications. For example, `mqtt://homeassistant:1883`.|
+|`mqtt/server`|**string**|mqtt://core-mosquitto|The MQTT server address. Make sure you include the protocol. Depending on your configuration, the MQTT server URL will need to include the port, typically `1883` or `8883` for SSL communications. For example, `mqtt://homeassistant:1883`.|
 |`mqtt/base_topic`|**string**|zigbee2mqtt|Prefix for your MQTT topic|
 |`mqtt/user`|string| |Your MQTT username, if set.|
 |`mqtt/password`|string|mqtt|Your MQTT Password, if set.|
