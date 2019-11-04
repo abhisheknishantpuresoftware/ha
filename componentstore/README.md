@@ -33,6 +33,6 @@ If you want to share components or plugins, don't hesitate let us know.
 ### Licenses
 Additional licenses for third-party components of this addon are available as part of the [LICENSE.md](https://github.com/homematevn/ha/blob/master/componentstore/docs/LICENSE.md) file.
 ### Credits
-- [custom-components](https://github.com/custom-components/hacs)
+- [custom-components](https://hacs.xyz)
 
-[logo]: https://github.com/HomemateVN/ha/blob/master/componentstore/logo.png
+[logo]: https://github.com/HomemateVN/ha/raw/master/componentstore/logo.png
