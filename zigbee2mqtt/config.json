@@ -80,5 +80,5 @@
       "simultaneously": "int?"
     }
   },
-  "image": "koenkk/zigbee2mqtt-{arch}"
+  "image": "homematevn/zigbee2mqtt-{arch}"
 }
