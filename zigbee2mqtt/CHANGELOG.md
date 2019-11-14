@@ -5,7 +5,29 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 This project is versioned based upon the version of [zigbee2mqtt](https://github.com/Koenkk/zigbee2mqtt). The versioning `X.Y.Z` of the stable release of this add-on will track that of zigbee2mqtt. If there are new releases without upgrades to the zigbee2mqtt version (i.e., changes to the add-on that occur between releases of zigbee2mqtt), an additional number will be added to indicate this (`X.Y.Z.A`, where `A` indicates a new versioned release).
 
-## [1.6.0](https://github.com/danielwelch/hassio-zigbee2mqtt/releases/tag/v1.5.1.2) - 2019-09-11
+## [1.7.1](https://github.com/Koenkk/zigbee2mqtt/releases/tag/1.7.1) - 2019-11-12
+
+### Improvements
+Only post device availability updates if the status has changed
+Publish correct state on toggle command
+### Fixes
+2306 Toggle command not working
+2307 Network map incomplete
+2309 Fix topic postfix detection having number
+2318 Fail gracefully when state retrieval fails after device reconnects
+
+### New supported devices
+STS-OUT-US-2 SmartThings Outlet
+
+## [1.7.0](https://github.com/Koenkk/zigbee2mqtt/releases/tag/1.7.1) - 2019-11-10
+Zigbee2mqtt has fully been refactored from zigbee-shepherd to the new zigbee-herdsman, among many other things, it improves:
+Pairing of devices, especially Xiaomi battery powered ones.
+Logging, it is now much clearer when a devices connects and pairs successfully
+Speed and stability
+For more, read #1888
+The new CC26X2R1 and CC1352P-2 are now officially supported, these 2 adapters are a powerful alternative to the CC2530/CC2531 which can become unstable in larger networks. For more info read Supported adapters
+
+## [1.6.0](https://github.com/danielwelch/hassio-zigbee2mqtt/releases/tag/v1.6.0.0) - 2019-09-11
 ### Changed
 - Upgrade zigbee2mqtt to 1.6.0
 

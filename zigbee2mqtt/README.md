@@ -27,7 +27,7 @@
 
 ## Configuration
 
-The following table describes all necessary options. To run this add-on, you must set the **required (bold)** parameters via the Hass.io user interface. See the [zigbee2mqtt docs](https://www.zigbee2mqtt.io/configuration/configuration.html) for other options.
+The following table describes all necessary options. To run this add-on, you must set the **required (bold)** parameters via the Hass.io user interface. See the [zigbee2mqtt docs](https://www.zigbee2mqtt.io/information/configuration.html) for other options.
 
 |Parameter|Type|Default|Description|
 |---------|----|--------|-----------|
@@ -42,7 +42,8 @@ The following table describes all necessary options. To run this add-on, you mus
 |`mqtt/password`|string|mqtt|Your MQTT Password, if set.|
 |`mqtt/client_id`|string|mqtt|MQTT ClientID|
 |`serial/port`|**string**|/dev/ttyUSB0|Port for your CC2531 stick. To find out the port, go to Hass.io > System > Host system > Show Hardware|
-|`channel`|int|11|Channel changing requires re-pairing of all devices. Should use only channels: 11, 15, 20, 25|
+|`pan_id`|2 byte|0x1a62|Change pan_id to separate with others network|
+|`channel`|int|11|Change channel to avoid interference with other network. Should use only channels: 11, 15, 20, 25. Changing this require re-pairing all devices|
 |`rtscts`|bool|false|Must set to `false` if you are using CC2530|
 |`network_key`|**list(int)**|[1,2,..16]|8 Int number. Encryption key will improve security. See [more detail](https://www.zigbee2mqtt.io/how_tos/how_to_secure_network.html). Leave this option empty if you don't want to use a network key. Changing this requires repairing of all devices.|
 
