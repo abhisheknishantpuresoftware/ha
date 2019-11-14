@@ -35,15 +35,20 @@ The following table describes all necessary options. To run this add-on, you mus
 |`devices`|string|devices.yaml|Device-specific file. See information below.|
 |`groups`|string|groups.yaml|Group file. See information below.|
 |`homeassistant`|**bool**|true|Set `true` if you want MQTT auto discovery.|
-|`permit_join`|**bool**|false|Set `true` when you setup new devices - make sure you set it back to `false` when done. Or alternative [runtime pairing](https://github.com/homematevn/ha/blob/master/zigbee2mqtt/PAIRING.md)|
+|`permit_join`|**bool**|false|Set `true` when you setup new devices - make sure you set it back to `false` when done. Or create [frontend pairing](https://github.com/homematevn/ha/blob/master/zigbee2mqtt/PAIRING.md)|
 |`mqtt/server`|**string**|mqtt://core-mosquitto|The MQTT server address. Make sure you include the protocol. Depending on your configuration, the MQTT server URL will need to include the port, typically `1883` or `8883` for SSL communications. For example, `mqtt://homeassistant:1883`.|
 |`mqtt/base_topic`|**string**|zigbee2mqtt|Prefix for your MQTT topic|
 |`mqtt/user`|string| |Your MQTT username, if set.|
 |`mqtt/password`|string|mqtt|Your MQTT Password, if set.|
 |`mqtt/client_id`|string|mqtt|MQTT ClientID|
+<<<<<<< HEAD
 |`serial/port`|**string**|/dev/ttyUSB0|Port for your CC2531 stick. To find out the port, go to Hass.io > System > Host system > Show Hardware|
 |`pan_id`|2 byte|0x1a62|Change pan_id to separate with others network|
 |`channel`|int|11|Change channel to avoid interference with other network. Should use only channels: 11, 15, 20, 25. Changing this require re-pairing all devices|
+=======
+|`serial/port`|**string**|/dev/ttyAMA1|Port of your Zigbee module. To find out the port, go to Hass.io > System > Host system > Show Hardware|
+|`channel`|int|11|Channel changing requires re-pairing of all devices. Should use only channels: 11, 15, 20, 25|
+>>>>>>> cee78a896e5f1f5aa317d399d68f2f5295db401a
 |`rtscts`|bool|false|Must set to `false` if you are using CC2530|
 |`network_key`|**list(int)**|[1,2,..16]|8 Int number. Encryption key will improve security. See [more detail](https://www.zigbee2mqtt.io/how_tos/how_to_secure_network.html). Leave this option empty if you don't want to use a network key. Changing this requires repairing of all devices.|
 
@@ -54,6 +59,19 @@ In some cases, you may wish to modify zigbee2mqtt's `configuration.yaml` file di
 If you are using groups or device-specific settings, you must provide the paths to these files in `devices` & `groups` options.
 Zigbee2mqtt allows certain [device-specific configuration options](https://www.zigbee2mqtt.io/configuration/device_specific_configuration.html). 
 
+
+---
+
+### Working with Zigbee modules
+Zigbee module needed a modified ZHA firmware in order to work. The flashing progress will not covered in this document.
+
+#### CC2530 module (UART)
+- UART must be enable before use. Instruction for [Raspberry pi 3]()and [Raspberry pi4]()
+ Port usually are /dev/ttyAMA0 (pi3) or /dev/ttyAMA1 (pi4) . To find out the port, go to Hass.io > System > Host system > Show Hardware
+
+#### CC2531 module (USB)
+Port usually are /dev/USB0. To find out the port, go to Hass.io > System > Host system > Show Hardware
+
 ---
 
 ### Pairing
@@ -61,7 +79,7 @@ Zigbee2mqtt allows certain [device-specific configuration options](https://www.z
 #### Enable Paring (Simple way): 
 Set `permit_join` in configuration to **true**, then restart the add-on. Change back to **false** when you finish.
 
-#### Add button to frontend to control Enable Pairing (Advance):
+#### Add button to frontend to control Enable Pairing (Advanced):
 [Information here](https://github.com/homematevn/ha/blob/master/zigbee2mqtt/PAIRING.md)
 
 ### Support Devices and pairing Instruction

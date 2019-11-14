@@ -20,7 +20,7 @@
       "password": "mqtt"
     },
     "serial":{
-      "port": "/dev/ttyUSB0"
+      "port": "/dev/ttyAMA1"
     },
     "advanced": {
       "rtscts": false,
