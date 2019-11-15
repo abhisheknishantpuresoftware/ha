@@ -10,8 +10,8 @@ ENV LANG C.UTF-8
 RUN apk add --update --no-cache curl jq nodejs npm \
     python2 make gcc g++ linux-headers udev git python2 && \
   curl -s https://api.github.com/repos/Koenkk/zigbee2mqtt/releases/latest | grep 'tag_name' | sed -E 's/.*"([^"]+)".*/\1/' | xargs -I {} curl -sL -o "/zigbee2mqtt.tar.gz" "https://github.com/Koenkk/zigbee2mqtt/archive/{}.tar.gz" && \
-  tar xzvf "/zigbee2mqtt.tar.gz" && \
-  cd "/zigbee2mqtt*" && \
+  tar xzvf /zigbee2mqtt.tar.gz && \
+  curl -s https://api.github.com/repos/Koenkk/zigbee2mqtt/releases/latest | grep 'tag_name' | sed -E 's/.*"([^"]+)".*/\1/' | xargs -I {} cd "/zigbee2mqtt-{}" && \
   npm install --unsafe-perm -g pm2 && \
   npm install --unsafe-perm && \
   apk del make gcc g++ python2 linux-headers udev && \

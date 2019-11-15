@@ -13,9 +13,9 @@ fi
 
 if [ ! -d $CONFIG_PATH/custom_components/hacs ]; then
   echo Copying files...
-  tar xzvf /hacs.tar.gz
-  cp -R hacs*/custom_components $CONFIG_PATH
-  rm -rdf hacs*
+  tar xzvf /hacs.tar.gz -C $CONFIG_PATH/custom_components/hacs
+#  cp -R hacs*/custom_components $CONFIG_PATH
+#  rm -rdf hacs*
 fi
 
 if ! grep -qs "hacs:" $CONFIG_PATH/configuration.yaml; then
