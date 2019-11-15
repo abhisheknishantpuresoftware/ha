@@ -17,7 +17,7 @@ fi
 if [ ! -d $CONFIG_PATH/custom_components/hacs ]; then
   mkdir $CONFIG_PATH/custom_components/hacs
   echo Copying files...
-  tar xzvf /hacs.zip -C $CONFIG_PATH/custom_components/hacs
+  unzip /hacs.zip -d $CONFIG_PATH/custom_components/hacs
 #  cp -R hacs*/custom_components $CONFIG_PATH
 #  rm -rdf hacs*
 fi
