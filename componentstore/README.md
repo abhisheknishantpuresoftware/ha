@@ -30,6 +30,6 @@ During the startup there will be a progressbar indicating that it's scanning for
 ### Licenses
 Additional licenses for third-party components of this addon are available as part of the [LICENSE.md](https://github.com/homematevn/ha/blob/master/componentstore/docs/LICENSE.md) file.
 ### Credits
-- [custom-components](https://hacs.xyz)
+- [Home Assistant Component Store](https://hacs.xyz)
 
 [logo]: https://github.com/HomemateVN/ha/raw/master/componentstore/logo.png
