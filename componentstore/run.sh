@@ -18,20 +18,6 @@ if [ ! -d $CONFIG_PATH/custom_components/hacs ]; then
   mkdir $CONFIG_PATH/custom_components/hacs
   echo Copying files...
   unzip /hacs.zip -d $CONFIG_PATH/custom_components/hacs
-#  cp -R hacs*/custom_components $CONFIG_PATH
-#  rm -rdf hacs*
+  echo HACS installation is completed. You can now uninstall this addon!
 fi
-
-if ! grep -qs "hacs:" $CONFIG_PATH/configuration.yaml; then
-  echo "Auto edit configuration.yaml"
-	# shellcheck disable=SC2129
-	echo "hacs:" >> $CONFIG_PATH/configuration.yaml
-	echo "  token: !secret github_access_token" >> $CONFIG_PATH/configuration.yaml
-  echo "  sidepanel_title: Community Store" >> $CONFIG_PATH/configuration.yaml
-  echo "  sidepanel_icon: mdi:store" >> $CONFIG_PATH/configuration.yaml
-	echo "You will need to add github token in configuration.yaml"
-else
-    echo configuration.yaml is correctly configured!
-fi
-
 echo Done!
