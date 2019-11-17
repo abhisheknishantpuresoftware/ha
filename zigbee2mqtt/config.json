@@ -10,6 +10,7 @@
   "boot": "auto",
   "map": ["config:rw"],
   "options": {
+    "homeassistant": true,
     "devices": "devices.yaml",
     "permit_join": true,
     "mqtt": {
@@ -33,6 +34,7 @@
     "queue": {}
   },
   "schema": {
+    "homeassistant": "bool?",
     "zigbee_devices": "bool?",
     "zigbee_debug": "bool?",
     "devices": "str?",
