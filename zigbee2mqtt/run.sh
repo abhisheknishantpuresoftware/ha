@@ -7,11 +7,10 @@ ZIGBEE_DEBUG=$(jq --raw-output ".zigbee_debug // empty" $CONFIG_PATH)
 ZIGBEE_DEVICES=$(jq --raw-output ".zigbee_devices // empty" $CONFIG_PATH)
 
 # Create config file
-echo "Started"
 mkdir -p $DATA_PATH
 
 # Parse config
-cat "$CONFIG_PATH" | jq 'del(.zigbee_debug)' | jq 'del(.zigbee_devices)' >> $DATA_PATH/configuration.yaml
+cat "$CONFIG_PATH" | jq 'del(.zigbee_debug)' | jq 'del(.zigbee_devices)' > $DATA_PATH/configuration.yaml
 echo "homeassistant: true" >> $DATA_PATH/configuration.yaml
 
 if [[ ! -z "$ZIGBEE_DEBUG" ]]; then
