@@ -1,8 +1,8 @@
 <div align="center">
 <h1>Zigbee2mqtt Hass.io Add-on</h1>
 <div style="display: flex; justify-content: center;">
-  <a style="margin-right: 0.5rem;" href="https://travis-ci.org/homematevn/zigbee2mqtt">
-    <img src="https://img.shields.io/travis/homematevn/zigbee2mqtt.svg?style=flat-square&logo=travis">
+  <a style="margin-right: 0.5rem;" href="https://travis-ci.org/homematevn/ha">
+    <img src="https://img.shields.io/travis/homematevn/ha.svg?style=flat-square&logo=travis">
   </a>
   <a style="margin-left: 0.5rem;" href="">
     <img src="https://img.shields.io/badge/armhf-yes-green.svg">
