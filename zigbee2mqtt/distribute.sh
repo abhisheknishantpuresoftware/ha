@@ -23,7 +23,6 @@ if [ ! -z "$TRAVIS_TAG" ]; then
         --doc-url "${GITHUB_URL}" \
         --login "${DOCKER_USERNAME}" \
         --password "${DOCKER_PASSWORD}" \
-        --parallel
 else
     echo "No tag found."
     if [ "$TRAVIS_BRANCH" != "master" ]; then
@@ -46,5 +45,4 @@ else
         --doc-url "${GITHUB_URL}" \
         --login "${DOCKER_USERNAME}" \
         --password "${DOCKER_PASSWORD}" \
-        --parallel
 fi

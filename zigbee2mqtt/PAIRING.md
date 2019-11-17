@@ -10,7 +10,7 @@ Below is an example configuration that will allow you to enable and disable devi
 
 ```yaml
 mqtt:
-  broker: homeassistant # This will have to be your mqtt broker
+  broker: core-mosquitto # This will have to be your mqtt broker
   discovery: true
 
 input_boolean:

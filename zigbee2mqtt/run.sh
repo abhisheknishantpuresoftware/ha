@@ -10,8 +10,8 @@ ZIGBEE_DEVICES=$(jq --raw-output ".zigbee_devices // empty" $CONFIG_PATH)
 mkdir -p $DATA_PATH
 
 # Parse config
-cat "$CONFIG_PATH" | jq 'del(.zigbee_debug)' | jq 'del(.zigbee_devices)' > $DATA_PATH/configuration.yaml
-echo "homeassistant: true" >> $DATA_PATH/configuration.yaml
+echo "homeassistant: true" > $DATA_PATH/configuration.yaml
+cat "$CONFIG_PATH" | jq 'del(.zigbee_debug)' | jq 'del(.zigbee_devices)' | yq r - >> $DATA_PATH/configuration.yaml
 
 if [[ ! -z "$ZIGBEE_DEBUG" ]]; then
     echo "[Info] Zigbee debug logging enabled."
@@ -27,4 +27,4 @@ if [[ ! -z "$ZIGBEE_DEVICES" ]]; then
     fi
 fi
 
-ZIGBEE2MQTT_DATA="$DATA_PATH" pm2-runtime start npm -- start
+ZIGBEE2MQTT_DATA="$DATA_PATH" DEBUG="$DEBUG" pm2-runtime start npm -- start
