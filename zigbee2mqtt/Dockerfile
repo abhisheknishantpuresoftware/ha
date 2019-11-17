@@ -4,21 +4,22 @@ FROM $BUILD_FROM
 # Add env
 ENV LANG C.UTF-8
 
-#ENV ZIGBEE2MQTT_VERSION=1.6.0
+#ENV ZIGBEE2MQTT_VERSION=1.7.1
 #ENV ARCHIVE=zigbee2mqtt-$ZIGBEE2MQTT_VERSION
 
 RUN apk add --update --no-cache curl jq nodejs npm \
-    python2 make gcc g++ linux-headers udev git python2 && \
+    python2 make gcc g++ linux-headers udev git && \
   curl -s https://api.github.com/repos/Koenkk/zigbee2mqtt/releases/latest | grep 'tag_name' | sed -E 's/.*"([^"]+)".*/\1/' | xargs -I {} curl -sL -o "/zigbee2mqtt.tar.gz" "https://github.com/Koenkk/zigbee2mqtt/archive/{}.tar.gz" && \
-  tar xzvf "/zigbee2mqtt.tar.gz" && \
-  cd "/zigbee2mqtt*" && \
+  tar xzvf /zigbee2mqtt.tar.gz && \
+  mv "$(find / -name 'zigbee2mqtt*' -type d)" /zigbee2mqtt && \
+  cd /zigbee2mqtt && \
   npm install --unsafe-perm -g pm2 && \
   npm install --unsafe-perm && \
   apk del make gcc g++ python2 linux-headers udev && \
   rm -rf docs test images scripts data docker LICENSE README.md update.sh
 
-COPY run.sh "/zigbee2mqtt*/run.sh"
-WORKDIR "/zigbee2mqtt*"
+COPY run.sh "/zigbee2mqtt/run.sh"
+WORKDIR "/zigbee2mqtt"
 
 RUN ["chmod", "a+x", "./run.sh"]
 CMD [ "./run.sh" ]
