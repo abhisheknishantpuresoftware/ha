@@ -12,7 +12,7 @@ if [ -z "${TRAVIS_TAG}" ]; then
         --tag-test \
         --all \
         --from "homeassistant/{arch}-base" \
-        --author "Viet Tien <ttvtien@gmail.com>" \
+        --author "${AUTHOR}" \
         --doc-url "${GITHUB_URL}" \
         --login "${DOCKER_USERNAME}" \
         --password "${DOCKER_PASSWORD}" \
@@ -27,7 +27,7 @@ else
         --tag-latest \
         --all \
         --from "homeassistant/{arch}-base" \
-        --author "Viet Tien <ttvtien@gmail.com>" \
+        --author "${AUTHOR}" \
         --doc-url "${GITHUB_URL}" \
         --login "${DOCKER_USERNAME}" \
         --password "${DOCKER_PASSWORD}" \

@@ -14,3 +14,9 @@ jobs:
       if: type != pull_request AND (branch = master OR tag IS present)
       script:
         - $TRAVIS_BUILD_DIR/zigbee2mqtt/distribute.sh
+
+env:
+  global:
+    - ADDON_NAME="zigbee2mqtt"
+    - AUTHOR="Viet Tien <ttvtien@gmail.com>"
+    - GITHUB_URL="https://github.com/HomemateVN/ha/tree/master/zigbee2mqtt"

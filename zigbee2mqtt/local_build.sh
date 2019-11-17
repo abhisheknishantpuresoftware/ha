@@ -12,6 +12,6 @@ docker run -it --rm --privileged --name "${ADDON_NAME}" \
     --tag-test \
     --amd64 \
     --from "homeassistant/{arch}-base" \
-    --author "Viet Tien <ttvtien@gmail.com>" \
+    --author "${AUTHOR}" \
     --doc-url "${GITHUB_URL}" \
     --parallel
