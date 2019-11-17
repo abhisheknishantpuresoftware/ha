@@ -22,7 +22,7 @@ if [ ! -z "$TRAVIS_TAG" ]; then
         --author "${AUTHOR}" \
         --doc-url "${GITHUB_URL}" \
         --login "${DOCKER_USERNAME}" \
-        --password "${DOCKER_PASSWORD}" \
+        --password "${DOCKER_PASSWORD}"
 else
     echo "No tag found."
     if [ "$TRAVIS_BRANCH" != "master" ]; then
@@ -44,5 +44,5 @@ else
         --author "${AUTHOR}" \
         --doc-url "${GITHUB_URL}" \
         --login "${DOCKER_USERNAME}" \
-        --password "${DOCKER_PASSWORD}" \
+        --password "${DOCKER_PASSWORD}"
 fi
