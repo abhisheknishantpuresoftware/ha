@@ -6,12 +6,11 @@ DATA_PATH=/config/zigbee2mqtt
 ZIGBEE_DEBUG=$(jq --raw-output ".zigbee_debug // empty" $CONFIG_PATH)
 ZIGBEE_DEVICES=$(jq --raw-output ".zigbee_devices // empty" $CONFIG_PATH)
 
-# Create config file
+# Create config directory
 mkdir -p $DATA_PATH
 
-# Parse config
-#echo "homeassistant: true" > $DATA_PATH/configuration.yaml
-cat "$CONFIG_PATH" | jq 'del(.zigbee_debug)' | jq 'del(.zigbee_devices)' > $DATA_PATH/configuration.yaml
+# Modify config
+cat "$CONFIG_PATH" | jq 'del(.zigbee_debug)' | jq 'del(.zigbee_devices)' | jq '. + {"homeassistant": true}' > $DATA_PATH/configuration.yaml
 
 if [[ ! -z "$ZIGBEE_DEBUG" ]]; then
     echo "[Info] Zigbee debug logging enabled."
