@@ -5,7 +5,8 @@ FROM $BUILD_FROM
 ENV LANG C.UTF-8
 
 RUN apk add --update --no-cache curl jq nodejs npm \
-    python2 make gcc g++ linux-headers udev git yq && \
+    python2 make gcc g++ linux-headers udev git && \
+    pip install yq && \
   curl -s https://api.github.com/repos/Koenkk/zigbee2mqtt/releases/latest | grep 'tag_name' | sed -E 's/.*"([^"]+)".*/\1/' | xargs -I {} curl -sL -o "/zigbee2mqtt.tar.gz" "https://github.com/Koenkk/zigbee2mqtt/archive/{}.tar.gz" && \
   tar xzvf /zigbee2mqtt.tar.gz && \
   mv "$(find / -name 'zigbee2mqtt*' -type d)" /zigbee2mqtt && \
