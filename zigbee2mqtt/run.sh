@@ -7,6 +7,7 @@ ZIGBEE_DEBUG=$(jq --raw-output ".zigbee_debug // empty" $CONFIG_PATH)
 ZIGBEE_DEVICES=$(jq --raw-output ".zigbee_devices // empty" $CONFIG_PATH)
 
 # Create config file
+echo "new version"
 mkdir -p $DATA_PATH
 echo "homeassistant: true" >> $DATA_PATH/configuration.yaml
 
