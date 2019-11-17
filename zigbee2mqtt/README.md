@@ -23,49 +23,41 @@
 <br>
 </div>
 
-
-
 ## Configuration
 
-The following table describes all necessary options. To run this add-on, you must set the **required (bold)** parameters via the Hass.io user interface. See the [zigbee2mqtt docs](https://www.zigbee2mqtt.io/information/configuration.html) for other options.
+The following table describes all necessary options. To run this add-on, you must set the **required (bold)** parameters via the Hass.io user interface. 
+See the [zigbee2mqtt docs](https://www.zigbee2mqtt.io/information/configuration.html) for other options.
 
 |Parameter|Type|Default|Description|
 |---------|----|--------|-----------|
-|`data_path`|**string**|/share/zigbee2mqtt|The path you'd like the add-on to persist data. Must be within the `/share` directory.|
 |`devices`|string|devices.yaml|Device-specific file. See information below.|
 |`groups`|string|groups.yaml|Group file. See information below.|
-|`homeassistant`|**bool**|true|Set `true` if you want MQTT auto discovery.|
 |`permit_join`|**bool**|false|Set `true` when you setup new devices - make sure you set it back to `false` when done. Or create [frontend pairing](https://github.com/homematevn/ha/blob/master/zigbee2mqtt/PAIRING.md)|
 |`mqtt/server`|**string**|mqtt://core-mosquitto|The MQTT server address. Make sure you include the protocol. Depending on your configuration, the MQTT server URL will need to include the port, typically `1883` or `8883` for SSL communications. For example, `mqtt://homeassistant:1883`.|
 |`mqtt/base_topic`|**string**|zigbee2mqtt|Prefix for your MQTT topic|
-|`mqtt/user`|string| |Your MQTT username, if set.|
-|`mqtt/password`|string|mqtt|Your MQTT Password, if set.|
-|`mqtt/client_id`|string|mqtt|MQTT ClientID|
-|`serial/port`|**string**|/dev/ttyUSB0|Port for your CC2531 stick. To find out the port, go to Hass.io > System > Host system > Show Hardware|
+|`mqtt/user`|**string**|mqtt|Your MQTT username, if set.|
+|`mqtt/password`|**string**|mqtt|Your MQTT Password, if set.|
+|`mqtt/client_id`|string| |MQTT ClientID|
+|`serial/port`|**string**|/dev/ttyAMA1|Module communication's port. To find out the port, go to Hass.io > System > Host system > Show Hardware|
 |`pan_id`|2 byte|0x1a62|Change pan_id to separate with others network|
 |`channel`|int|11|Change channel to avoid interference with other network. Should use only channels: 11, 15, 20, 25. Changing this require re-pairing all devices|
 |`rtscts`|bool|false|Must set to `false` if you are using CC2530|
 |`network_key`|**list(int)**|[1,2,..16]|8 Int number. Encryption key will improve security. See [more detail](https://www.zigbee2mqtt.io/how_tos/how_to_secure_network.html). Leave this option empty if you don't want to use a network key. Changing this requires repairing of all devices.|
 
-#### Modifying zigbee2mqtt's `configuration.yaml`
-In some cases, you may wish to modify zigbee2mqtt's `configuration.yaml` file directly. By default, the configuration file is saved to `/share/zigbee2mqtt/configuration.yaml` on Hass.io host (see data_path above).
 
 #### Device-specific Configuration
 If you are using groups or device-specific settings, you must provide the paths to these files in `devices` & `groups` options.
 Zigbee2mqtt allows certain [device-specific configuration options](https://www.zigbee2mqtt.io/configuration/device_specific_configuration.html). 
-
+The configuration file is located at `/config/zigbee2mqtt` on Hass.io host.
 
 ---
 
-### Working with Zigbee modules
-Zigbee module needed a modified ZHA firmware in order to work. The flashing progress will not covered in this document.
+## Working with Zigbee modules
+- Zigbee module needed a modified ZHA firmware in order to work. The flashing progress will not covered in this document.
 
-#### CC2530 module (UART)
-- UART must be enable before use. Instruction for [Raspberry pi 3]()and [Raspberry pi4]()
- Port usually are /dev/ttyAMA0 (pi3) or /dev/ttyAMA1 (pi4) . To find out the port, go to Hass.io > System > Host system > Show Hardware
+- CC2530 module: UART must be enable before use. Instruction [here](). Port usually are /dev/ttyS0 (pi3) or /dev/ttyAMA1 (pi4). 
 
-#### CC2531 module (USB)
-Port usually are /dev/USB0. To find out the port, go to Hass.io > System > Host system > Show Hardware
+- CC2531 module (USB): Port usually are /dev/USB0. To find the port, go to Hass.io > System > Host system > Show Hardware
 
 ---
 
