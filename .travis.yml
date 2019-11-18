@@ -7,10 +7,7 @@ services:
 
 jobs:
   include:
-    - stage: Build Zigbee2mqtt Docker Images
-      script:
-        - $TRAVIS_BUILD_DIR/zigbee2mqtt/build.sh
-    - stage: Deploy Zigbee2mqtt Docker Images to Docker Hub
+    - stage: Build and Deploy Zigbee2mqtt images to Docker Hub
       if: type != pull_request AND (branch = master OR tag IS present)
       script:
         - $TRAVIS_BUILD_DIR/zigbee2mqtt/distribute.sh

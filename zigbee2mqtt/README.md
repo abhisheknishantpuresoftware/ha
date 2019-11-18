@@ -55,13 +55,13 @@ The configuration file is located at `/config/zigbee2mqtt` on Hass.io host.
 ## Working with Zigbee modules
 - Zigbee module needed a modified ZHA firmware in order to work. The flashing progress will not covered in this document.
 
-- CC2530 module: UART must be enable before use. Instruction [here](). Port usually are /dev/ttyS0 (pi3) or /dev/ttyAMA1 (pi4). 
+- CC2530 module: UART must be enable before use. Instruction [here](https://github.com/homematevn/ha/blob/master/zigbee2mqtt/UART.md). Port usually are /dev/ttyS0 (pi3) or /dev/ttyAMA1 (pi4). 
 
 - CC2531 module (USB): Port usually are /dev/USB0. To find the port, go to Hass.io > System > Host system > Show Hardware
 
 ---
 
-### Pairing
+# Pairing
 
 #### Enable Paring (Simple way): 
 Set `permit_join` in configuration to **true**, then restart the add-on. Change back to **false** when you finish.
@@ -69,15 +69,13 @@ Set `permit_join` in configuration to **true**, then restart the add-on. Change 
 #### Add button to frontend to control Enable Pairing (Advanced):
 [Information here](https://github.com/homematevn/ha/blob/master/zigbee2mqtt/PAIRING.md)
 
-### Support Devices and pairing Instruction
+### Supported Devices and device pairing Instruction
 [Information here](https://www.zigbee2mqtt.io/information/supported_devices.html)
 
 ---
 ### Updating the Add-on and `zigbee2mqtt` Library
 
-The stable, versioned zigbee2mqtt can be updated using the standard Hass.io update functionality within the user interface. This add-on will be updated with bug fixes and as the underlying `zigbee2mqtt` library is updated.
-
-If you have reinstalled the add-on and believe that the latest version has not been installed, try removing the repository before reinstalling.
+The stable, versioned zigbee2mqtt can be updated using the standard Hass.io update functionality. This add-on will be updated with bug fixes and as the underlying `zigbee2mqtt` library is updated.
 
 ----
 ### Issues
