@@ -13,6 +13,11 @@ Success enable UART, you will see /dev/ttyAMA1 in Hass.io > System > Host system
 
 ---
 # Wiring
+- Connect Pi 3.3V --> CC2530 VCC
+- Connect Pi GND  --> CC2530 GND
+- Connect Pi TX   -->CC2530 RX
+- Connect Pi RX   -->CC2530 TX
+
 | CC2530 | Raspberry pi 3 | Raspberry pi 4 |
 |--------|----------------|----------------|
 | VCC | Pin 1 / 17 | Pin 1 / 17 |
