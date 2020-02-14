@@ -32,4 +32,4 @@ Additional licenses for third-party components of this addon are available as pa
 ### Credits
 - [Home Assistant Component Store](https://hacs.xyz)
 
-[logo]: https://github.com/HomemateVN/ha/raw/master/componentstore/logo.png
+[logo]: https://github.com/HomemateVN/ha/raw/master/componentstore/icon.png

@@ -157,4 +157,4 @@ Here is an example Home Assistant Sensor configuration that monitors for these e
 ## Credits
  [samccauley](https://github.com/samccauley/addon-hassiogooglebackup#readme).
 
-[logo]: https://github.com/HomemateVN/ha/raw/master/googlebackup/logo.png
+[logo]: https://github.com/HomemateVN/ha/raw/master/googlebackup/icon.png

@@ -10,11 +10,11 @@ jobs:
   include:
     - stage: Build Zigbee2mqtt Docker Images on AMD64
       script:
-        - $TRAVIS_BUILD_DIR/zigbee2mqtt/build.sh
+        - travis_wait 120 sleep infinity & $TRAVIS_BUILD_DIR/zigbee2mqtt/build.sh
     - stage: Build and Deploy Zigbee2mqtt images to Docker Hub
       if: type != pull_request AND (branch = master OR tag IS present)
       script:
-        - $TRAVIS_BUILD_DIR/zigbee2mqtt/distribute.sh
+        - travis_wait 120 sleep infinity & $TRAVIS_BUILD_DIR/zigbee2mqtt/distribute.sh
 
 env:
   global:
