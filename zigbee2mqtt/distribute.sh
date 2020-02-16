@@ -29,7 +29,7 @@ if [ -z "$TRAVIS_TAG" ]; then
         --author "${AUTHOR}" \
         --doc-url "${GITHUB_URL}" \
         --login "${DOCKER_USERNAME}" \
-        --password "${DOCKER_PASSWORD}" \
+        --password "${DOCKER_PASSWORD}"
 else
     echo "Tagged build found. Pushing zigbee2mqtt image to Docker with tag 'latest'."
 
@@ -45,6 +45,6 @@ else
         --author "${AUTHOR}" \
         --doc-url "${GITHUB_URL}" \
         --login "${DOCKER_USERNAME}" \
-        --password "${DOCKER_PASSWORD}" \
+        --password "${DOCKER_PASSWORD}"
 fi
 echo "Docker built and publish successful."
