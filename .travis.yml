@@ -1,9 +1,6 @@
 language: python
 os:
   - linux
-arch:
-  - amd64
-  - arm64
 python:
   - 3.7
 services:
