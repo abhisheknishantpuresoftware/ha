@@ -8,13 +8,29 @@ services:
 
 jobs:
   include:
-    - stage: Build Zigbee2mqtt Docker Images on AMD64
+    - stage: Build Zigbee2mqtt Docker Images for AMD64
       script:
-        - travis_wait 120 sleep infinity & $TRAVIS_BUILD_DIR/zigbee2mqtt/build.sh
-    - stage: Build and Deploy Zigbee2mqtt images to Docker Hub
+        - $TRAVIS_BUILD_DIR/zigbee2mqtt/build.sh
+    - stage: Build and Deploy Zigbee2mqtt images to Docker Hub for AARCH64
       if: type != pull_request AND (branch = master OR tag IS present)
       script:
-        - travis_wait 300 sleep infinity & $TRAVIS_BUILD_DIR/zigbee2mqtt/distribute.sh
+        - $TRAVIS_BUILD_DIR/zigbee2mqtt/distribute_aarch64.sh
+    - stage: Build and Deploy Zigbee2mqtt images to Docker Hub for AMD64
+      if: type != pull_request AND (branch = master OR tag IS present)
+      script:
+        - $TRAVIS_BUILD_DIR/zigbee2mqtt/distribute_amd64.sh
+    - stage: Build and Deploy Zigbee2mqtt images to Docker Hub for ARMHF
+      if: type != pull_request AND (branch = master OR tag IS present)
+      script:
+        - $TRAVIS_BUILD_DIR/zigbee2mqtt/distribute_armhf.sh
+    - stage: Build and Deploy Zigbee2mqtt images to Docker Hub for ARMV7
+      if: type != pull_request AND (branch = master OR tag IS present)
+      script:
+        - $TRAVIS_BUILD_DIR/zigbee2mqtt/distribute_armv7.sh
+    - stage: Build and Deploy Zigbee2mqtt images to Docker Hub for i386
+      if: type != pull_request AND (branch = master OR tag IS present)
+      script:
+        - $TRAVIS_BUILD_DIR/zigbee2mqtt/distribute_i386.sh
 
 env:
   global:
