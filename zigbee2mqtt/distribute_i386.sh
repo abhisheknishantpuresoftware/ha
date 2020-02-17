@@ -24,7 +24,7 @@ if [ -z "$TRAVIS_TAG" ]; then
         --target "${ADDON_NAME}" \
         --tag-test \
         --push \
-        --all \
+        --i386 \
         --from "homeassistant/{arch}-base" \
         --author "${AUTHOR}" \
         --doc-url "${GITHUB_URL}" \
@@ -41,7 +41,7 @@ else
         --target "${ADDON_NAME}" \
         --tag-latest \
         --push \
-        --all \
+        --i386 \
         --from "homeassistant/{arch}-base" \
         --author "${AUTHOR}" \
         --doc-url "${GITHUB_URL}" \

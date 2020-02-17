@@ -1,6 +1,9 @@
 language: python
 os:
   - linux
+arch:
+  - amd64
+  - arm64
 python:
   - 3.7
 services:
@@ -12,6 +15,7 @@ jobs:
       script:
         - $TRAVIS_BUILD_DIR/zigbee2mqtt/build.sh
     - stage: Build and Deploy Zigbee2mqtt images to Docker Hub for AARCH64
+      arch: arm64
       if: type != pull_request AND (branch = master OR tag IS present)
       script:
         - $TRAVIS_BUILD_DIR/zigbee2mqtt/distribute_aarch64.sh
@@ -20,10 +24,12 @@ jobs:
       script:
         - $TRAVIS_BUILD_DIR/zigbee2mqtt/distribute_amd64.sh
     - stage: Build and Deploy Zigbee2mqtt images to Docker Hub for ARMHF
+      arch: arm64
       if: type != pull_request AND (branch = master OR tag IS present)
       script:
         - $TRAVIS_BUILD_DIR/zigbee2mqtt/distribute_armhf.sh
     - stage: Build and Deploy Zigbee2mqtt images to Docker Hub for ARMV7
+      arch: arm64
       if: type != pull_request AND (branch = master OR tag IS present)
       script:
         - $TRAVIS_BUILD_DIR/zigbee2mqtt/distribute_armv7.sh
