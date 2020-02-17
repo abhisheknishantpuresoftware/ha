@@ -12,6 +12,7 @@ services:
 jobs:
   include:
     - stage: Build Zigbee2mqtt Docker Images for AMD64
+      arch: amd64
       script:
         - $TRAVIS_BUILD_DIR/zigbee2mqtt/build.sh
     - stage: Build and Deploy Zigbee2mqtt images to Docker Hub for AARCH64
@@ -20,6 +21,7 @@ jobs:
       script:
         - $TRAVIS_BUILD_DIR/zigbee2mqtt/distribute_aarch64.sh
     - stage: Build and Deploy Zigbee2mqtt images to Docker Hub for AMD64
+      arch: amd64
       if: type != pull_request AND (branch = master OR tag IS present)
       script:
         - $TRAVIS_BUILD_DIR/zigbee2mqtt/distribute_amd64.sh
