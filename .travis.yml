@@ -23,13 +23,13 @@ jobs:
       script:
         - $TRAVIS_BUILD_DIR/zigbee2mqtt/distribute_i386.sh
     - stage: Build and Deploy Zigbee2mqtt images to Docker Hub for AARCH64
-      if: type != pull_request AND (branch = master OR tag IS present)
       arch: arm64
+      if: type != pull_request AND (branch = master OR tag IS present)
       script:
         - $TRAVIS_BUILD_DIR/zigbee2mqtt/distribute_aarch64.sh
     - stage: Build and Deploy Zigbee2mqtt images to Docker Hub for ARMHF
-        arch: amd64
-        if: type != pull_request AND (branch = master OR tag IS present)
+      arch: amd64
+      if: type != pull_request AND (branch = master OR tag IS present)
         script:
           - $TRAVIS_BUILD_DIR/zigbee2mqtt/distribute_armhf.sh
 
