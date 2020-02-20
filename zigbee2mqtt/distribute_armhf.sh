@@ -41,7 +41,7 @@ else
         --target "${ADDON_NAME}" \
         --tag-latest \
         --push \
-        --armhf \
+        --armv7l \
         --from "homeassistant/{arch}-base" \
         --author "${AUTHOR}" \
         --doc-url "${GITHUB_URL}" \
