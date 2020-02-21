@@ -11,7 +11,7 @@ RUN apk add --update --no-cache curl jq nodejs npm \
   mv "$(find / -name 'zigbee2mqtt*' -type d)" /zigbee2mqtt && \
   cd /zigbee2mqtt && \
   npm install --unsafe-perm -g pm2 && \
-  npm install semver
+  npm install semver && \
   apk del make gcc g++ python2 linux-headers udev && \
   rm -rf docs test images scripts data docker LICENSE README.md update.sh
 
