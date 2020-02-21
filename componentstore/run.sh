@@ -19,5 +19,7 @@ if [ ! -d $CONFIG_PATH/custom_components/hacs ]; then
   echo Copying files...
   unzip /hacs.zip -d $CONFIG_PATH/custom_components/hacs
   echo HACS installation is completed. You can now uninstall this addon!
+  echo Remember to config github personal access token to use HACS
+
 fi
 echo Done!
