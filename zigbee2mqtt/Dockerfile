@@ -12,7 +12,7 @@ RUN apk add --update --no-cache curl jq nodejs npm \
   git clone -b master --single-branch --depth 1 https://github.com/Koenkk/zigbee2mqtt.git /zigbee2mqtt && \
   cd /zigbee2mqtt && \
   npm install --unsafe-perm -g pm2 && \
-  npm install --unsafe-perm debounce
+  npm install --unsafe-perm -g
   #debounce fast-deep-equal
   #git-last-commit js-yaml mkdir-recursive moment && \
   #npm install --unsafe-perm mqtt object-assign-deep rimraf semver winston
