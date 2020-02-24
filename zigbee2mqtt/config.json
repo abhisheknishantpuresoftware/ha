@@ -8,8 +8,9 @@
   "startup": "before",
   "arch": ["aarch64", "amd64", "armhf", "i386"],
   "boot": "auto",
-  "map": ["config:rw"],
+  "map": ["config:rw","ssl", "share:rw"],
   "options": {
+    "data_path": "/share/zigbee2mqtt",
     "devices": "devices.yaml",
     "permit_join": true,
     "mqtt": {
