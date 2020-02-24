@@ -2,7 +2,7 @@
   "name": "zigbee2mqtt",
   "version": "1.10.0",
   "slug": "zigbee2mqtt",
-  "description": "Zigbee to MQTT Bridge",
+  "description": "Zigbee to MQTT Bridge using Zigbee-herdsman",
   "auto_uart": true,
   "url": "https://github.com/homematevn/ha/tree/master/zigbee2mqtt",
   "startup": "before",
