@@ -1,7 +1,7 @@
 #!/bin/bash
 
 CONFIG_PATH=/data/options.json
-DATA_PATH=$(jq --raw-output ".data_path" $CONFIG_PATH)
+DATA_PATH=/share/zigbee2mqtt
 
 ZIGBEE_DEBUG=$(jq --raw-output ".zigbee_debug // empty" $CONFIG_PATH)
 ZIGBEE_DEVICES=$(jq --raw-output ".zigbee_devices // empty" $CONFIG_PATH)

@@ -1,6 +1,6 @@
 {
   "name": "zigbee2mqtt",
-  "version": "1.10.0a",
+  "version": "1.10.0b",
   "slug": "zigbee2mqtt",
   "description": "Zigbee to MQTT Bridge using Zigbee-herdsman",
   "auto_uart": true,

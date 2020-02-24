@@ -48,7 +48,7 @@ See the [zigbee2mqtt docs](https://www.zigbee2mqtt.io/information/configuration.
 #### Device-specific Configuration
 If you are using groups or device-specific settings, you must provide the paths to these files in `devices` & `groups` options.
 Zigbee2mqtt allows certain [device-specific configuration options](https://www.zigbee2mqtt.io/configuration/device_specific_configuration.html). 
-The configuration file is located at `/config/zigbee2mqtt` on Hass.io host.
+The configuration file is located at `/share/zigbee2mqtt` on Hass.io host.
 
 ---
 

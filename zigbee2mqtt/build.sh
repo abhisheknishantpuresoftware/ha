@@ -10,7 +10,7 @@ if [ -z "${TRAVIS_TAG}" ]; then
         hassioaddons/build-env:latest \
         --target "${ADDON_NAME}" \
         --tag-test \
-        --aarch64 \
+        --amd64 \
         --from "homeassistant/{arch}-base" \
         --author "${AUTHOR}" \
         --doc-url "${GITHUB_URL}" \
@@ -25,7 +25,7 @@ else
         hassioaddons/build-env:latest \
         --target "${ADDON_NAME}" \
         --tag-latest \
-        --aarch64 \
+        --amd64 \
         --from "homeassistant/{arch}-base" \
         --author "${AUTHOR}" \
         --doc-url "${GITHUB_URL}" \
