@@ -14,6 +14,8 @@ mkdir -p $DATA_PATH
 cat "$CONFIG_PATH" | jq 'del(.zigbee_debug)' | jq 'del(.zigbee_devices)' | jq '. + {"homeassistant": true}' > $DATA_PATH/configuration.yaml
 
 #Script to check device port
+echo Zigbee port
+echo $ZIGBEE_PORT
 if [ ! -f $ZIGBEE_PORT ] ; then
    echo Zigbee device port not found. Please check your device and config
    echo Will now stop!
