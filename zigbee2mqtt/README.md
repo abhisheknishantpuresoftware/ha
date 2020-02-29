@@ -8,9 +8,6 @@
     <img src="https://img.shields.io/badge/armhf-yes-green.svg">
   </a>
   <a style="margin-left: 0.5rem;" href="">
-    <img src="https://img.shields.io/badge/armv7-yes-green.svg">
-  </a>
-  <a style="margin-left: 0.5rem;" href="">
     <img src="https://img.shields.io/badge/aarch64-yes-green.svg">
   </a>
   <a style="margin-left: 0.5rem;" href="">
