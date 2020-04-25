@@ -1,8 +1,8 @@
 {
   "name": "Hass.io Component Store",
-  "version": "0.21.6",
+  "version": "0.24.2",
   "slug": "hacs",
-  "homeassistant": "0.98.0",
+  "homeassistant": "0.107.0",
   "description": "Manage all your custom integration (components) and plugin (lovelace elements) with ease.",
   "arch": ["aarch64", "amd64", "armhf", "armv7", "i386"],
   "url": "https://github.com/homematevn/ha/tree/master/componentstore",
